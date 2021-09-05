@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:object="${user}" action="/create" method="post" enctype="multipart/form-data">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td><input placeholder="nhập userName" th:field="*{userName}"></td>
+                <td style="color: red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></td>
+            <tr>
+            <tr>
+                <td><input placeholder="nhập passWord" th:field="*{passWord}"></td>
+                <td style="color: red" th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}"></td>
+            <tr>
+            <tr>
+                <td>
+                    <select th:field="*{role}">
+                        <option th:each="role :${listRole}" th:value="${role.id}"
+                                th:text="${role.name}"></option>
+                    </select>
+                </td>
+                <td style="color: red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></td>
+
+            <tr>
+
+            <tr>
+
+                <td>
+                    <button type="submit" class="btn btn-success">Add New</button>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/users" class="btn btn-info">Back</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
