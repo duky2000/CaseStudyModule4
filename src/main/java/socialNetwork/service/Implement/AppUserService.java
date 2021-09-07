@@ -22,13 +22,13 @@ public class AppUserService implements UserDetailsService, IAppUserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = userRepository.findAllByUserNameContaining(username);
+        AppUser user = userRepository.findByUsername(username);
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(user.getRole());
 
         UserDetails userDetails = new User(
-                user.getUserName(),
-                user.getPassWord(),
+                user.getUsername(),
+                user.getPassword(),
                 authorities
         );
 
@@ -42,7 +42,7 @@ public class AppUserService implements UserDetailsService, IAppUserService {
 
     @Override
     public AppUser findByName(String name) {
-        return userRepository.findAllByUserNameContaining(name);
+        return userRepository.findByUsername(name);
     }
 
     @Override

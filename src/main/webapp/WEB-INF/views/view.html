@@ -11,23 +11,29 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container"  th:object="${user}">
 
     <table class="table table-bordered">
-        <tbody>
-        <tr th:object="${user}">
+        <tr>
             <td><input th:field="*{id}" readonly></td>
-            <td><input th:field="*{userName}" readonly></td>
-            <td><input th:field="*{passWord}" readonly></td>
-            <td><input th:field="*{role.name}" readonly></td>
-            <td><a th:href="@{/edit/__${user.id}__}" class="btn btn-warning">Edit</a></td>
-            <td><a th:href="@{/delete/__${user.id}__}" class="btn btn-danger">Delete</a></td>
-            </td>
+            <td><input th:field="*{username}" readonly></td>
+            <td><input th:field="*{password}" readonly></td>
+            <td><input th:field="*{email}" readonly></td>
+            <td><input th:field="*{phone}" readonly></td>
         </tr>
         <tr>
-            <td> <a href="/users" class="btn btn-info">Back</a></td>
+            <td><input th:field="*{address}" readonly></td>
+            <td><input th:field="*{dateOfBirthday}" readonly></td>
+            <td><input th:field="*{repass}" readonly></td>
+            <td><img th:src="@{'/upload/'+${user.avatar}}" width="100px" height="70px"></td>
+            <td><input th:field="*{role.name}" readonly></td>
+
         </tr>
-        </tbody>
+        <tr>
+            <td><a th:href="@{/edit/__${user.id}__}" class="btn btn-warning">Edit</a></td>
+            <td><a th:href="@{/delete/__${user.id}__}" class="btn btn-danger">Delete</a></td>
+            <td> <a href="/" class="btn btn-info">Back</a></td>
+        </tr>
     </table>
 
 </div>

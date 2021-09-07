@@ -16,4 +16,9 @@ public class AppRoleService implements IAppRoleService {
     public Iterable<Role> findAll() {
         return roleRepository.findAll();
     }
+
+    @Override
+    public Role findById(Long id) {
+        return roleRepository.findById(id).get();
+    }
 }

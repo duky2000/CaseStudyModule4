@@ -30,14 +30,11 @@
                     <button type="submit" class="btn btn-danger">Yes</button>
                 </form>
             </td>
-            <td>
 
-
-            </td>
             <td>
-                <form action="/students" method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                     <input type="hidden" th:value="${user.id}">
-                    <button type="submit" class="btn btn-info">No</button>
+                    <a href="/" type="submit" class="btn btn-info">No</a>
                 </form>
             </td>
         </tr>

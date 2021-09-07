@@ -1,19 +1,32 @@
 package socialNetwork.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id = 2;
-    @Pattern(regexp = "^[^\\d]+$" , message = "Name Not Number")
+    private long id;
     @Size(min = 2,message = "Name > 2")
-    private String userName;
+    private String username;
     @Size(min = 6,message = "passWord > 6")
-    private String passWord;
+    private String password;
+    @Pattern(regexp = "^[a-zA-Z0-9]+@[a-z]+\\.[a-z]+$", message = "sai email")
+    private String email;
+    @Pattern(regexp = "^[0][0-9]{9}$", message = "sdt phai bat dau tu 0 va 9 so")
+    private String phone;
+    @NotEmpty(message = "not null")
+    private String address;
+    private Date dateOfBirthday;
+    @NotEmpty(message = "not null")
+    private String repass;
+    private String avatar;
+
 
     @ManyToOne
     Role role;
@@ -21,11 +34,15 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(long id, String userName, String passWord, Role role) {
-        this.id = id;
-        this.userName = userName;
-        this.passWord = passWord;
-        this.role = role;
+    public AppUser( String username, String passWord, String email, String phone, String address, Date dateOfBirthday, String repass,String avatar) {
+        this.username = username;
+        this.password = passWord;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.dateOfBirthday = dateOfBirthday;
+        this.repass = repass;
+        this.avatar = avatar;
     }
 
     public long getId() {
@@ -36,20 +53,68 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDateOfBirthday() {
+        return dateOfBirthday;
+    }
+
+    public void setDateOfBirthday(Date dateOfBirthday) {
+        this.dateOfBirthday = dateOfBirthday;
+    }
+
+    public String getRepass() {
+        return repass;
+    }
+
+    public void setRepass(String repass) {
+        this.repass = repass;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Role getRole() {
