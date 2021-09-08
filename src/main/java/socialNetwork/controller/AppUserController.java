@@ -11,6 +11,7 @@ import socialNetwork.model.AppUser;
 import socialNetwork.model.Role;
 import socialNetwork.service.Implement.AppRoleService;
 import socialNetwork.service.Implement.AppUserService;
+import socialNetwork.validate.ValidateUserName;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -23,6 +24,10 @@ public class AppUserController {
 
     @Autowired
     AppRoleService appRoleService;
+
+    @Autowired
+    ValidateUserName validateUserName;
+
 
     private String upLoadFile = "D:\\Module4\\TestCaseMD4\\src\\main\\webapp\\WEB-INF\\file\\";
 
@@ -41,7 +46,7 @@ public class AppUserController {
 
     @GetMapping("/")
     public ModelAndView showFormUser() {
-        ModelAndView modelAndView = new ModelAndView("admin");
+        ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("list", appUserService.findAll());
         return modelAndView;
     }
@@ -88,22 +93,24 @@ public class AppUserController {
     }
 
     @PostMapping("/create")
-    public ModelAndView create( @RequestParam("upImg") MultipartFile file,@Valid @ModelAttribute AppUser appUser, BindingResult bindingResult) {
-        String fileName = file.getOriginalFilename();
-        try {
-            FileCopyUtils.copy(file.getBytes(), new File(upLoadFile + fileName));
-        } catch (Exception ex) {
-            System.err.println("err upload file");
-        }
-        appUser.setAvatar(fileName);
+    public ModelAndView create(@ModelAttribute("user") AppUser appUser) {
+//        String fileName = file.getOriginalFilename();
+//        try {
+//            FileCopyUtils.copy(file.getBytes(), new File(upLoadFile + fileName));
+//        } catch (Exception ex) {
+//            System.err.println("err upload file");
+//        }
+//        appUser.setAvatar(fileName);
 
-        if (bindingResult.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("create");
-            modelAndView.addObject("user", appUser);
-            return modelAndView;
-        }
+//       validateUserName.validate(appUser,bindingResult);
+
+//        if (bindingResult.hasFieldErrors()) {
+//            ModelAndView modelAndView = new ModelAndView("create");
+//            modelAndView.addObject("user", appUser);
+//            return modelAndView;
+//        }
+
         long id = 2;
-
         appUser.setRole(appRoleService.findById(id));
         appUserService.save(appUser);
         ModelAndView modelAndView = new ModelAndView("redirect:/");

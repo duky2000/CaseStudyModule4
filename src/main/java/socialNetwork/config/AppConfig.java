@@ -30,6 +30,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import socialNetwork.validate.ValidateUserName;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -82,7 +83,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:D:\\Module4\\TestCaseMD4\\src\\main\\webapp\\WEB-INF\\file\\");
+                .addResourceLocations("file:D:\\Module4\\TestCaseMD4\\src\\main\\webapp\\WEB-INF\\");
     }
 
     @Bean
@@ -154,5 +155,9 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(new Locale("en"));
         return localeResolver;
+    }
+    @Bean
+    public ValidateUserName validateUserName(){
+        return new ValidateUserName();
     }
 }

@@ -12,7 +12,7 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Size(min = 2,message = "Name > 2")
+//    @Size(min = 2,message = "Name > 2")
     private String username;
     @Size(min = 6,message = "passWord > 6")
     private String password;
@@ -20,21 +20,33 @@ public class AppUser {
     private String email;
     @Pattern(regexp = "^[0][0-9]{9}$", message = "sdt phai bat dau tu 0 va 9 so")
     private String phone;
-    @NotEmpty(message = "not null")
+//    @NotEmpty(message = "not null")
     private String address;
     private Date dateOfBirthday;
-    @NotEmpty(message = "not null")
+//    @NotEmpty(message = "not null")
     private String repass;
     private String avatar;
 
 
     @ManyToOne
+
     Role role;
+
 
     public AppUser() {
     }
 
-    public AppUser( String username, String passWord, String email, String phone, String address, Date dateOfBirthday, String repass,String avatar) {
+    public AppUser(String username, String password, String email, String phone, String address, Date dateOfBirthday, String repass) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.dateOfBirthday = dateOfBirthday;
+        this.repass = repass;
+    }
+
+    public AppUser(String username, String passWord, String email, String phone, String address, Date dateOfBirthday, String repass, String avatar) {
         this.username = username;
         this.password = passWord;
         this.email = email;

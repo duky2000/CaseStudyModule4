@@ -12,10 +12,18 @@
 <body>
 
 <div class="container">
-    <a href="/create" class="btn btn-success">Add New</a>
+    <td><a href="/create" class="btn btn-success">Add New</a></td>
+    <td>
+
+    </td>
+    <td><a href="/logout" class="btn btn-success">Logout</a></td>
     <form action="/findByName" method="get">
-        <input type="text" class="form-control" placeholder="search" name="findName">
-        <button type="submit" class="btn btn-success">Find</button>
+        <table>
+            <tr>
+                <td><button type="submit" class="btn btn-success">Find</button></td>
+                <td><input type="text" class="form-control" placeholder="search" name="findName"></td>
+            </tr>
+        </table>
     </form>
     <table class="table table-bordered">
         <thead>
