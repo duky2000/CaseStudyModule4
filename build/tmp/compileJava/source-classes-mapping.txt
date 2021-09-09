@@ -1,28 +1,28 @@
-socialNetwork/service/Implement/AppRoleService.java
- socialNetwork.service.Implement.AppRoleService
-socialNetwork/config/SecurityInit.java
- socialNetwork.config.SecurityInit
-socialNetwork/service/IAppRoleService.java
- socialNetwork.service.IAppRoleService
-socialNetwork/model/Role.java
- socialNetwork.model.Role
 socialNetwork/repository/RoleRepository.java
  socialNetwork.repository.RoleRepository
-socialNetwork/config/AppConfig.java
- socialNetwork.config.AppConfig
-socialNetwork/controller/AppUserController.java
- socialNetwork.controller.AppUserController
-socialNetwork/service/Implement/AppUserService.java
- socialNetwork.service.Implement.AppUserService
-socialNetwork/service/IAppUserService.java
- socialNetwork.service.IAppUserService
-socialNetwork/model/AppUser.java
- socialNetwork.model.AppUser
+socialNetwork/config/SecurityInit.java
+ socialNetwork.config.SecurityInit
+socialNetwork/model/Role.java
+ socialNetwork.model.Role
+socialNetwork/service/Implement/UserService.java
+ socialNetwork.service.Implement.UserService
+socialNetwork/controller/UserController.java
+ socialNetwork.controller.UserController
+socialNetwork/service/IUserService.java
+ socialNetwork.service.IUserService
 socialNetwork/validate/ValidateUserName.java
  socialNetwork.validate.ValidateUserName
-socialNetwork/repository/UserRepository.java
- socialNetwork.repository.UserRepository
+socialNetwork/service/Implement/RoleService.java
+ socialNetwork.service.Implement.RoleService
+socialNetwork/config/AppConfig.java
+ socialNetwork.config.AppConfig
 socialNetwork/config/SecurityConfig.java
  socialNetwork.config.SecurityConfig
+socialNetwork/model/User.java
+ socialNetwork.model.User
 socialNetwork/config/AppInit.java
  socialNetwork.config.AppInit
+socialNetwork/service/IRoleService.java
+ socialNetwork.service.IRoleService
+socialNetwork/repository/UserRepository.java
+ socialNetwork.repository.UserRepository

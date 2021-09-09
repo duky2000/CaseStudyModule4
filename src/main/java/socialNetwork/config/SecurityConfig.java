@@ -9,13 +9,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import socialNetwork.service.Implement.AppUserService;
+import socialNetwork.service.Implement.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    AppUserService appUserService;
+    UserService appUserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -23,10 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/signup").permitAll()
 
 
-                .and().authorizeRequests().antMatchers("/**").authenticated()
+                .and().authorizeRequests().antMatchers("/","/create","/edit/**","/delete","/delete/**","/findByName","/view/**").authenticated()
 
                 .and().authorizeRequests().antMatchers("/admin").hasRole("ADMIN")
-//                .and().authorizeRequests().antMatchers("/admin").hasRole("USER")
+//
 
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

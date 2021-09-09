@@ -4,17 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import socialNetwork.model.AppUser;
-import socialNetwork.service.IAppUserService;
-import socialNetwork.service.Implement.AppUserService;
-
-import java.util.List;
+import socialNetwork.model.User;
+import socialNetwork.service.IUserService;
 
 @Service
 public class ValidateUserName implements Validator {
 
     @Autowired
-    IAppUserService iAppUserService;
+    IUserService iAppUserService;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -23,9 +20,9 @@ public class ValidateUserName implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Iterable<AppUser> list = iAppUserService.findAll();
-        AppUser appUser = (AppUser) target;
-        for (AppUser a : list) {
+        Iterable<User> list = iAppUserService.findAll();
+        User appUser = (User) target;
+        for (User a : list) {
             if (a.getUsername().equals(appUser.getUsername())) {
                 errors.rejectValue("username", "same_name");
                 break;

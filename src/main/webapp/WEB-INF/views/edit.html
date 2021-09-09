@@ -12,14 +12,14 @@
 <body>
 
 <div class="container">
-    <form th:object="${user}"  method="post" enctype="multipart/form-data">
+    <form th:object="${appUser}"  method="post" enctype="multipart/form-data">
         <table class="table table-bordered">
             <tbody >
             <tr>
                 <td><input th:field="*{id}" readonly></td>
             <tr>
             <tr>
-                <td><input th:field="*{username}"></td>
+                <td><input th:field="*{username}" readonly></td>
             <tr>
             <tr>
                 <td><input th:field="*{password}"></td>
