@@ -44,8 +44,6 @@ public class User {
         this.repass = repass;
     }
 
-
-
     public long getId() {
         return id;
     }
@@ -124,5 +122,19 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public User(long id, String username, String password, String email, String phone, String address, Date dateOfBirthday, String repass, String avatar, Role role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.dateOfBirthday = dateOfBirthday;
+        this.repass = repass;
+        this.avatar = avatar;
+        this.role = role;
+
     }
 }

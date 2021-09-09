@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:object="${appUser}"  method="post" enctype="multipart/form-data">
+        <table class="table table-bordered">
+            <tbody >
+            <tr>
+                <td><input th:field="*{id}" readonly></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{username}" readonly></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{password}"></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{email}"></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{phone}"></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{address}"></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{dateOfBirthday}"></td>
+            <tr>
+            <tr>
+                <td><input th:field="*{repass}"></td>
+            <tr>
+            <tr>
+               <td><img th:src="@{'/resource/'+${appUser.avatar}}" width="150px" height="80px"></td>
+                <td><input type="file" name="upImg"></td>
+            <tr>
+            <tr>
+                <td>
+                    <select th:field="*{role}">
+                        <option th:each="role :${listRole}" th:value="${role.id}"
+                                th:text="${role.name}"></option>
+                    </select>
+                </td>
+                <td style="color: red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></td>
+
+            <tr>
+            <tr>
+                <td><button type="submit"  class="btn btn-warning">Update</button></td>
+            </tr>
+            <tr>
+                <td> <a href="/" class="btn btn-info">Back</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

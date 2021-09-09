@@ -7,6 +7,8 @@ import org.springframework.validation.Validator;
 import socialNetwork.model.User;
 import socialNetwork.service.IUserService;
 
+import java.util.ArrayList;
+
 @Service
 public class ValidateUserName implements Validator {
 
@@ -20,7 +22,7 @@ public class ValidateUserName implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Iterable<User> list = iAppUserService.findAll();
+        ArrayList<User> list = (ArrayList<User>) iAppUserService.findAll();
         User appUser = (User) target;
         for (User a : list) {
             if (a.getUsername().equals(appUser.getUsername())) {

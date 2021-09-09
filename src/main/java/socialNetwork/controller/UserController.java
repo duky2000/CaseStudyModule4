@@ -1,6 +1,7 @@
 package socialNetwork.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -30,27 +31,36 @@ public class UserController {
     @Autowired
     ValidateUserName validateUserName;
 
+    @Value("${static-path}")
+    private String fileUpload;
 
-    private String upLoadFile = "D:\\Module4\\TestCaseMD4\\src\\main\\webapp\\WEB-INF\\file\\";
 
     @GetMapping("/login")
     public ModelAndView showFormLogin() {
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView("user/login");
         return modelAndView;
     }
 
     @GetMapping("/signup")
     public ModelAndView showFormSignup() {
-        ModelAndView modelAndView = new ModelAndView("signup");
+        ModelAndView modelAndView = new ModelAndView("user/signup");
         modelAndView.addObject("user", new User());
         return modelAndView;
     }
 
+    @GetMapping("/forgotPassword")
+    public ModelAndView showFormPassWord() {
+        ModelAndView modelAndView = new ModelAndView("user/forgotPassword");
+        modelAndView.addObject("user", new User());
+        return modelAndView;
+    }
+
+
     @GetMapping("/")
     public ModelAndView showFormUser() {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("user/home");
         Long idUser = userService.findByName(getPrincipal()).getId();
-        modelAndView.addObject("idUserName",idUser);
+        modelAndView.addObject("idUserName", idUser);
         return modelAndView;
     }
 
@@ -59,24 +69,18 @@ public class UserController {
         return roleService.findAll();
     }
 
-    @GetMapping("/create")
-    public ModelAndView showFormCreate() {
-        ModelAndView modelAndView = new ModelAndView("create");
-        modelAndView.addObject("user", new User());
-        return modelAndView;
-    }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView showFormEdit(@PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView("edit");
-        User appUser = userService.findByIdTest(id);
-        modelAndView.addObject("appUser",appUser);
+    public ModelAndView showFormEdit(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("user/edit");
+        User appUser = userService.findById(id).get();
+        modelAndView.addObject("appUser", appUser);
         return modelAndView;
     }
 
     @GetMapping("/delete/{id}")
     public ModelAndView showFormDelete(@PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView("delete");
+        ModelAndView modelAndView = new ModelAndView("user/delete");
         modelAndView.addObject("user", userService.findById(id).get());
         return modelAndView;
     }
@@ -88,63 +92,44 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/view/{id}")
-    public ModelAndView showFormView(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("view");
-        modelAndView.addObject("user", userService.findById(id).get());
+
+    @PostMapping("/signup")
+    public ModelAndView signup(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+
+
+        ModelAndView modelAndView;
+        validateUserName.validate(user,bindingResult);
+        if (!user.getPassword().equals(user.getRepass())) {
+
+            modelAndView = new ModelAndView("user/signup");
+            modelAndView.addObject("message", "confirm password does not match");
+
+        } else if (bindingResult.hasFieldErrors()){
+            modelAndView = new ModelAndView("user/signup");
+            modelAndView.addObject("username", "Duplicate name");
+
+        }
+        else {
+            long id = 2;
+            user.setRole(roleService.findById(id));
+
+            userService.save(user);
+            modelAndView = new ModelAndView("redirect:/");
+        }
         return modelAndView;
-
-    }
-
-    @PostMapping("/create")
-    public ModelAndView create( @ModelAttribute("user") User appUser) {
-//        String fileName = file.getOriginalFilename();
-//        try {
-//            FileCopyUtils.copy(file.getBytes(), new File(upLoadFile + fileName));
-//        } catch (Exception ex) {
-//            System.err.println("err upload file");
-//        }
-//        appUser.setAvatar(fileName);
-//        validateUserName.validate(appUser,bindingResult);
-
-        long id = 2;
-        appUser.setRole(roleService.findById(id));
-        userService.save(appUser);
-        ModelAndView modelAndView = new ModelAndView("redirect:/");
-        return modelAndView;
-
-
-//        if (bindingResult.hasFieldErrors()) {
-//            ModelAndView modelAndView = new ModelAndView("create");
-//            modelAndView.addObject("user", appUser);
-//            return modelAndView;
-//        }
-
-//        if (appUser.getPassword().equals( appUser.getRepass())){
-//            long id = 2;
-//            appUser.setRole(appRoleService.findById(id));
-//            appUserService.save(appUser);
-//           ModelAndView modelAndView = new ModelAndView("redirect:/");
-//            return modelAndView;
-//
-//        }
-//      ModelAndView  modelAndView = new ModelAndView("redirect:/signup");
-//        modelAndView.addObject("message","confirm password does not match");
-//        return modelAndView;
-
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@RequestParam("upImg") MultipartFile upImg, @ModelAttribute User appUser, @PathVariable long id) {
+    public String edit(@RequestParam("upImg") MultipartFile upImg, @ModelAttribute User user) {
         String nameImg = upImg.getOriginalFilename();
         try {
-            FileCopyUtils.copy(upImg.getBytes(), new File(upLoadFile + nameImg));
-            appUser.setAvatar(nameImg);
+            FileCopyUtils.copy(upImg.getBytes(), new File(fileUpload +"WEB-INF\\file\\"+ nameImg));
+            user.setAvatar("/resource/WEB-INF/file/"+nameImg);
         } catch (IOException e) {
             System.err.println("err upload file");
         }
 
-        userService.save(appUser);
+        userService.save(user);
         return "redirect:/";
     }
 

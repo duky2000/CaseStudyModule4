@@ -50,8 +50,8 @@ public class UserService implements UserDetailsService, IUserService {
     }
 
     @Override
-    public void save(User appUser) {
-        userRepository.save(appUser);
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -64,9 +64,10 @@ public class UserService implements UserDetailsService, IUserService {
         userRepository.delete(appUser);
     }
 
+
     @Override
-    public User findByIdTest(long id) {
-        return userRepository.findById(id).get();
+    public List<User> findAllByUsernameContaining(String name) {
+        return userRepository.findAllByUsernameContaining(name);
     }
 
 

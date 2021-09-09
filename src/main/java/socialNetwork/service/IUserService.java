@@ -2,6 +2,7 @@ package socialNetwork.service;
 
 import socialNetwork.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
@@ -17,5 +18,7 @@ public interface IUserService {
 
     void delete(User appUser);
 
-    User findByIdTest(long id);
+
+
+    List<User> findAllByUsernameContaining(String name);
 }

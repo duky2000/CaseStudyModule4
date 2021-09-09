@@ -13,7 +13,6 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Size(min = 2,message = "Name > 2")
     private String name;
     @Override
     public String getAuthority() {
