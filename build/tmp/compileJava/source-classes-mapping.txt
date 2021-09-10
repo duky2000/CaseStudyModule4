@@ -40,5 +40,9 @@ socialNetwork/model/Friend.java
  socialNetwork.model.Friend
 socialNetwork/repository/friend/IFriendRepo.java
  socialNetwork.repository.friend.IFriendRepo
+socialNetwork/model/FriendTest.java
+ socialNetwork.model.FriendTest
+socialNetwork/service/friend/core/Test.java
+ socialNetwork.service.friend.core.Test
 socialNetwork/controller/FriendController.java
  socialNetwork.controller.FriendController

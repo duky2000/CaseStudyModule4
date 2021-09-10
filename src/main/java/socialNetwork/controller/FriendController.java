@@ -51,19 +51,24 @@ public class FriendController {
     @RequestMapping("/accept/{id}")
     public ModelAndView accept(@PathVariable long id){
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/home");
-        //iUserServices.findIdByUsername(getPrincipal()) = id_user
-        //id = id_friend
-        Friend friend = iFriendService.findFriend(iUserServices.findIdByUsername(getPrincipal()), id);
-        friend.setStatus(1);
-        iFriendService.save(friend);
+        //iUserServices.findIdByUsername(getPrincipal()) = id_user(doi tuong dang dap nhap)
+        //id = id_friend (id nguoi muon ket ban)
+        long id1 = iUserServices.findIdByUsername(getPrincipal());
+        long id2 = id;
+        Friend friend1 = iFriendService.findFriend(id1, id2);
+        friend1.setStatus(1);
+        iFriendService.save(friend1);
+        Friend friend2 = iFriendService.findFriend(id2, id1);
+        friend2.setStatus(1);
+        iFriendService.save(friend2);
         return modelAndView;
     }
 
     @RequestMapping("/ignore/{id}")
     public ModelAndView ignore(@PathVariable long id){
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/home");
-        //iUserServices.findIdByUsername(getPrincipal()) = id_user
-        //id = id_friend
+        //iUserServices.findIdByUsername(getPrincipal()) = id_user(doi tuong dang dap nhap)
+        //id = id_friend (id nguoi muon ket ban)
         Friend friend = iFriendService.findFriend(iUserServices.findIdByUsername(getPrincipal()), id);
         iFriendService.delete(friend);
         return modelAndView;
