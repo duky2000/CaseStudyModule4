@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Detail</h1>
+<div th:object="${detail}">
+    <table>
+        <tr>
+            <th>Name</th>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td th:text="*{address}"></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/app/{id}(id = *{id_account})}">ket ban</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

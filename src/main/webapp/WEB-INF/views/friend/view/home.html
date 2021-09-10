@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: green;
+        }
+
+        * {
+            text-decoration: none;
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+            color: white;
+            font-family: Arial;
+        }
+
+        .nav {
+            background: black;
+            display: flex;
+            height: 4em;
+            line-height: 4em;
+            justify-content: space-between;
+        }
+
+        .logo{
+            font-size: 32px;
+            padding-left: 2em;
+        }
+        .menu{
+            display: flex;
+        }
+        .menu li {
+            padding-right: 2.5em;
+            font-size: 17px;
+        }
+
+        .menu li a:hover {
+            color: #e32879;
+            transition: color .2s ease-out;
+        }
+
+        .nav a:hover {
+            color: #e32879;
+            transition: color .2s ease-out;
+        }
+
+        .menu_down{
+            background: black;
+            width: 180px;
+            height: 10em;
+            margin: 0px auto;
+            line-height: 3em;
+            position: absolute;
+            top: 60px;
+            right: 17px;
+            display: none;
+        }
+
+        .menu_down li {
+            text-align: center;
+
+        }
+
+        .menu_down li a:hover {
+            color: #e32879;
+        }
+
+        .menu .menu_link:hover .menu_down{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+                           <!--header-->
+<div th:object="${getUser}">
+    <div class="nav">
+        <a th:href="@{/}" class="logo" th:text="*{username}"></a>
+        <ul class="menu">
+            <li><a href="/fr/home">Home</a></li>
+            <li><a href="/fr/friendList">App new friend</a></li>
+            <li class="menu_link">
+                <a href="#">notification</a>
+                <ul class="menu_down">
+                    <li th:each="c, loop: ${list}">
+                        <a th:text="${c.id_friend.id}"></a><a th:href="@{/fr/accept/{id}(id = ${c.id})}"> yes</a><a th:href="@{/fr/ignore/{id}(id = ${c.id})}"> cancel</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="/logout">logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<div th:each="c, lôp : ${list}">
+    <h2 th:text="${c.id}"></h2>
+    <p th:text="${c.id_friend.id}"></p>
+</div>
+
+</body>
+</html>

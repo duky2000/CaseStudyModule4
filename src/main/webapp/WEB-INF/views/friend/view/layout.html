@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        body {
+            background: green;
+        }
+
+        * {
+            text-decoration: none;
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+            color: white;
+            font-family: Arial;
+        }
+
+        .nav {
+            background: black;
+            display: flex;
+            height: 4em;
+            line-height: 4em;
+            justify-content: space-between;
+        }
+
+        .logo{
+            font-size: 32px;
+            padding-left: 2em;
+        }
+        .menu{
+            display: flex;
+        }
+        .menu li {
+            padding-right: 2.5em;
+            font-size: 17px;
+        }
+
+        .menu li a:hover {
+            color: #e32879;
+            transition: color .2s ease-out;
+        }
+
+        .nav a:hover {
+            color: #e32879;
+            transition: color .2s ease-out;
+        }
+
+        .menu_down{
+            background: black;
+            width: 180px;
+            height: 10em;
+            margin: 0px auto;
+            line-height: 3em;
+            position: absolute;
+            top: 60px;
+            right: 17px;
+            display: none;
+        }
+
+        .menu_down li {
+            text-align: center;
+
+        }
+
+        .menu_down li a:hover {
+            color: #e32879;
+        }
+
+        .menu .menu_link:hover .menu_down{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div th:fragment="list">
+    <div class="nav">
+        <a href="#" class="logo">Hello</a>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li class="menu_link">
+                <a href="#">About</a>
+                <ul class="menu_down">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
