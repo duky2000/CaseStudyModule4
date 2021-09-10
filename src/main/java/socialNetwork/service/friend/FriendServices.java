@@ -3,6 +3,7 @@ package socialNetwork.service.friend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import socialNetwork.model.Friend;
+import socialNetwork.model.User;
 import socialNetwork.repository.friend.IFriendRepo;
 
 import java.util.ArrayList;
@@ -20,16 +21,23 @@ public class FriendServices implements IFriendService{
 
     @Override
     public ArrayList<Friend> findNonFriend(long id_user) {
-        return iFriendRepo.findAllIdNon_Friend(id_user);
+        return iFriendRepo.friendRequest(id_user);
     }
 
     @Override
-    public Friend findFriend(long id_user, long id_friend) {
-        return iFriendRepo.findFriend(id_user, id_friend);
+    public Friend findInvitationsFriendById(long id) {
+        return iFriendRepo.findInvitationsFriendById(id);
     }
 
     @Override
     public void delete(Friend friend) {
         iFriendRepo.delete(friend);
     }
+
+    @Override
+    public Long findId(long id_user, long id_friend) {
+        return iFriendRepo.findId(id_user, id_friend);
+    }
+
+
 }

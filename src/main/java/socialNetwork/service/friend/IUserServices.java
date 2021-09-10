@@ -12,4 +12,6 @@ public interface IUserServices {
     User getUser(long id);
 
     long findIdByUsername(String username);
+
+    ArrayList<User> findAllMyFriend(long user);
 }

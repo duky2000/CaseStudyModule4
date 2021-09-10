@@ -51,26 +51,45 @@ public class FriendController {
     @RequestMapping("/accept/{id}")
     public ModelAndView accept(@PathVariable long id){
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/home");
+
         //iUserServices.findIdByUsername(getPrincipal()) = id_user(doi tuong dang dap nhap)
         //id = id_friend (id nguoi muon ket ban)
+
+
         long id1 = iUserServices.findIdByUsername(getPrincipal());
         long id2 = id;
-        Friend friend1 = iFriendService.findFriend(id1, id2);
+        System.out.println(id1);
+        System.out.println(id2);
+
+        // lúc làm bị rối lên làm cái dưới hơi a đuồi tí
+
+        long a = iFriendService.findId(id1, id2);
+        System.out.println(a);
+        Friend friend1 = iFriendService.findInvitationsFriendById(a);
         friend1.setStatus(1);
         iFriendService.save(friend1);
-        Friend friend2 = iFriendService.findFriend(id2, id1);
+
+        long b = a + 1;
+        Friend friend2 = iFriendService.findInvitationsFriendById(b);
         friend2.setStatus(1);
         iFriendService.save(friend2);
+
         return modelAndView;
     }
 
     @RequestMapping("/ignore/{id}")
     public ModelAndView ignore(@PathVariable long id){
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/home");
-        //iUserServices.findIdByUsername(getPrincipal()) = id_user(doi tuong dang dap nhap)
-        //id = id_friend (id nguoi muon ket ban)
-        Friend friend = iFriendService.findFriend(iUserServices.findIdByUsername(getPrincipal()), id);
-        iFriendService.delete(friend);
+
+        long id1 = iUserServices.findIdByUsername(getPrincipal());
+        long id2 = id;
+
+        long a = iFriendService.findId(id1, id2);
+        Friend friend1 = iFriendService.findInvitationsFriendById(a);
+        long b = a + 1;
+        Friend friend2 = iFriendService.findInvitationsFriendById(b);
+        iFriendService.delete(friend1);
+        iFriendService.delete(friend2);
         return modelAndView;
     }
 
@@ -78,6 +97,44 @@ public class FriendController {
     public ModelAndView showUserList(){
         ModelAndView modelAndView = new ModelAndView("friend/view/friendList");
         modelAndView.addObject("showUserList", iUserServices.findAllUser(getPrincipal()));
+        return modelAndView;
+    }
+
+    @GetMapping("/detail/{id}")
+    public ModelAndView showDetailUser(@PathVariable long id){
+        ModelAndView modelAndView = new ModelAndView("friend/view/detail");
+        modelAndView.addObject("detail", iUserServices.getUser(id));
+        return modelAndView;
+    }
+
+    @GetMapping("/app/{id}")
+    public ModelAndView sendInvitations(@PathVariable long id){
+        ModelAndView modelAndView = new ModelAndView("redirect:/fr/friendList");
+
+        // doi tuong singUp
+        User user1 = iUserServices.getUser(iUserServices.findIdByUsername(getPrincipal()));
+        // doi tuong muon ket ban
+        User user2 = iUserServices.getUser(id);
+
+        Friend friend1 = new Friend();
+        friend1.setStatus(3);
+        friend1.setId_user(user1);
+        friend1.setId_friend(user2);
+        iFriendService.save(friend1);
+
+        Friend friend2 = new Friend();
+        friend2.setStatus(0);
+        friend2.setId_user(user2);
+        friend2.setId_friend(user1);
+        iFriendService.save(friend2);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/showMyFriend")
+    public ModelAndView showMyFriend(){
+        ModelAndView modelAndView = new ModelAndView("friend/view/showMyFriend");
+        modelAndView.addObject("friendList", iUserServices.findAllMyFriend(iUserServices.findIdByUsername(getPrincipal())));
         return modelAndView;
     }
 

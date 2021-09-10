@@ -31,4 +31,10 @@ public class UserServices implements IUserServices{
     public long findIdByUsername(String username) {
         return iUserRepo.findIdByUsername(username);
     }
+
+    @Override
+    public ArrayList<User> findAllMyFriend(long user) {
+        return iUserRepo.findAllMyFriend(user);
+    }
+
 }
