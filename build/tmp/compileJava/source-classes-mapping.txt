@@ -46,3 +46,31 @@ socialNetwork/repository/friend/IFriendRepo.java
  socialNetwork.repository.friend.IFriendRepo
 socialNetwork/service/friend/FriendServices.java
  socialNetwork.service.friend.FriendServices
+socialNetwork/model/group/RoleGroup.java
+ socialNetwork.model.group.RoleGroup
+socialNetwork/service/group/IRoleGroupService.java
+ socialNetwork.service.group.IRoleGroupService
+socialNetwork/repository/group/IGroupRepo.java
+ socialNetwork.repository.group.IGroupRepo
+socialNetwork/repository/group/IRoleGroupRepo.java
+ socialNetwork.repository.group.IRoleGroupRepo
+socialNetwork/service/group/IMemberService.java
+ socialNetwork.service.group.IMemberService
+socialNetwork/model/group/Member.java
+ socialNetwork.model.group.Member
+socialNetwork/repository/group/IMemberRepo.java
+ socialNetwork.repository.group.IMemberRepo
+socialNetwork/service/group/RoleGroupService.java
+ socialNetwork.service.group.RoleGroupService
+socialNetwork/service/group/MemberService.java
+ socialNetwork.service.group.MemberService
+socialNetwork/model/group/TypeGroup.java
+ socialNetwork.model.group.TypeGroup
+socialNetwork/service/group/GroupService.java
+ socialNetwork.service.group.GroupService
+socialNetwork/service/group/IGroupService.java
+ socialNetwork.service.group.IGroupService
+socialNetwork/model/group/GroupTest.java
+ socialNetwork.model.group.GroupTest
+socialNetwork/controller/GroupController.java
+ socialNetwork.controller.GroupController

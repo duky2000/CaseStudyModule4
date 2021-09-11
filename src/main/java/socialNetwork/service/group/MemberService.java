@@ -1,2 +1,4 @@
-package socialNetwork.service.group;public class MemberService {
+package socialNetwork.service.group;
+
+public class MemberService {
 }

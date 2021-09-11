@@ -1,2 +1,4 @@
-package socialNetwork.service.group;public interface IRoleGroupService {
+package socialNetwork.service.group;
+
+public interface IRoleGroupService {
 }

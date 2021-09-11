@@ -1,2 +1,4 @@
-package socialNetwork.service.group;public interface IMemberService {
+package socialNetwork.service.group;
+
+public interface IMemberService {
 }

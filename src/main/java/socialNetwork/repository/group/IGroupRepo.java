@@ -1,2 +1,7 @@
-package socialNetwork.repository.group;public interface IGroupRepo {
+package socialNetwork.repository.group;
+
+import org.springframework.data.repository.CrudRepository;
+import socialNetwork.model.group.GroupTest;
+
+public interface IGroupRepo extends CrudRepository<GroupTest, Long> {
 }

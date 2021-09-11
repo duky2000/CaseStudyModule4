@@ -1,4 +1,6 @@
-package socialNetwork.model;
+package socialNetwork.model.group;
+
+import socialNetwork.model.User;
 
 import javax.persistence.*;
 
@@ -9,17 +11,18 @@ public class GroupTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nameGroup;
-    private int role_group;
     @ManyToOne
-    private User user;
+    private TypeGroup typeGroup;
+    @ManyToOne
+    private Member member;
 
     public GroupTest(){}
 
-    public GroupTest(long id, String nameGroup, int role_group, User user) {
+    public GroupTest(long id, String nameGroup, TypeGroup typeGroup, Member member) {
         this.id = id;
         this.nameGroup = nameGroup;
-        this.role_group = role_group;
-        this.user = user;
+        this.typeGroup = typeGroup;
+        this.member = member;
     }
 
     public long getId() {
@@ -38,19 +41,19 @@ public class GroupTest {
         this.nameGroup = nameGroup;
     }
 
-    public int getRole_group() {
-        return role_group;
+    public TypeGroup getTypeGroup() {
+        return typeGroup;
     }
 
-    public void setRole_group(int role_group) {
-        this.role_group = role_group;
+    public void setTypeGroup(TypeGroup typeGroup) {
+        this.typeGroup = typeGroup;
     }
 
-    public User getUser() {
-        return user;
+    public Member getMember() {
+        return member;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setMember(Member member) {
+        this.member = member;
     }
 }

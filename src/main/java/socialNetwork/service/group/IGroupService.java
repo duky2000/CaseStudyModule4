@@ -1,2 +1,8 @@
-package socialNetwork.service.group;public interface IGroupService {
+package socialNetwork.service.group;
+
+import socialNetwork.model.group.GroupTest;
+
+public interface IGroupService {
+
+    void saveGroup(GroupTest groupTest);
 }
