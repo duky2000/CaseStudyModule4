@@ -13,16 +13,13 @@ public class GroupTest {
     private String nameGroup;
     @ManyToOne
     private TypeGroup typeGroup;
-    @ManyToOne
-    private Member member;
 
     public GroupTest(){}
 
-    public GroupTest(long id, String nameGroup, TypeGroup typeGroup, Member member) {
+    public GroupTest(long id, String nameGroup, TypeGroup typeGroup) {
         this.id = id;
         this.nameGroup = nameGroup;
         this.typeGroup = typeGroup;
-        this.member = member;
     }
 
     public long getId() {
@@ -49,11 +46,4 @@ public class GroupTest {
         this.typeGroup = typeGroup;
     }
 
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
 }

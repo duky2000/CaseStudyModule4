@@ -2,8 +2,7 @@ package socialNetwork.service.friend;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import socialNetwork.model.Friend;
-import socialNetwork.model.User;
+import socialNetwork.model.friend.Friend;
 import socialNetwork.repository.friend.IFriendRepo;
 
 import java.util.ArrayList;

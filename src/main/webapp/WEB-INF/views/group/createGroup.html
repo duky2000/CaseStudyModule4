@@ -6,16 +6,22 @@
 </head>
 <body>
 <h1>Create Group</h1>
-<table border="1">
-    <tr>
-        <th>Name Group</th>
-        <th>Quyen rieng tu</th>
-    </tr>
-    <tbody>
-    <tr>
-        <td><input></td>
-    </tr>
-    </tbody>
-</table>
+<form action="/gr/createGroup" method="post" th:object="${create}">
+    <table border="1">
+        <tr>
+            <th>Name Group</th>
+            <td><input th:field="*{nameGroup}"></td>
+        </tr>
+        <tr>
+            <th>Group Type</th>
+            <td>
+                <select th:field="*{typeGroup}">
+                <option th:each="class :${groupType}" th:value="${class.id}" th:text="${class.type}"></option>
+            </select>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">create</button>
+</form>
 </body>
 </html>

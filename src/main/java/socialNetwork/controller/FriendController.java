@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import socialNetwork.model.Friend;
+import socialNetwork.model.friend.Friend;
 import socialNetwork.model.User;
 import socialNetwork.service.friend.IFriendService;
 import socialNetwork.service.friend.IUserServices;

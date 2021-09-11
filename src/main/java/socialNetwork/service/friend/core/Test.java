@@ -1,15 +1,5 @@
 package socialNetwork.service.friend.core;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import socialNetwork.model.Friend;
-import socialNetwork.model.User;
-import socialNetwork.repository.friend.IFriendRepo;
-import socialNetwork.repository.friend.IUserRepo;
-
-import java.util.ArrayList;
-
 public class Test {
 //    @Autowired
 //    IUserRepo iUserRepo;

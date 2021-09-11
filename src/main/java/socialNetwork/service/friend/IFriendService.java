@@ -1,7 +1,6 @@
 package socialNetwork.service.friend;
 
-import socialNetwork.model.Friend;
-import socialNetwork.model.User;
+import socialNetwork.model.friend.Friend;
 
 import java.util.ArrayList;
 

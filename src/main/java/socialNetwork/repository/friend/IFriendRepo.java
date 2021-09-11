@@ -3,8 +3,7 @@ package socialNetwork.repository.friend;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import socialNetwork.model.Friend;
-import socialNetwork.model.User;
+import socialNetwork.model.friend.Friend;
 
 import java.util.ArrayList;
 
