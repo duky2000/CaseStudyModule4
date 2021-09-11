@@ -1,11 +1,11 @@
 socialNetwork/service/IUserService.java
  socialNetwork.service.IUserService
-socialNetwork/model/group/Member.java
- socialNetwork.model.group.Member
+socialNetwork/model/friend/Friend.java
+ socialNetwork.model.friend.Friend
 socialNetwork/controller/UserController.java
  socialNetwork.controller.UserController
-socialNetwork/service/group/IGroupService.java
- socialNetwork.service.group.IGroupService
+socialNetwork/service/group/IRoleGroupService.java
+ socialNetwork.service.group.IRoleGroupService
 socialNetwork/validate/ValidateUserName.java
  socialNetwork.validate.ValidateUserName
 socialNetwork/config/AppConfig.java
@@ -32,16 +32,16 @@ socialNetwork/config/SecurityInit.java
  socialNetwork.config.SecurityInit
 socialNetwork/model/Role.java
  socialNetwork.model.Role
-socialNetwork/model/group/GroupTest.java
- socialNetwork.model.group.GroupTest
+socialNetwork/service/group/RoleGroupService.java
+ socialNetwork.service.group.RoleGroupService
 socialNetwork/service/friend/IUserServices.java
  socialNetwork.service.friend.IUserServices
 socialNetwork/repository/friend/IUserRepo.java
  socialNetwork.repository.friend.IUserRepo
 socialNetwork/service/friend/UserServices.java
  socialNetwork.service.friend.UserServices
-socialNetwork/service/group/GroupService.java
- socialNetwork.service.group.GroupService
+socialNetwork/service/friend/core/Test.java
+ socialNetwork.service.friend.core.Test
 socialNetwork/controller/FriendController.java
  socialNetwork.controller.FriendController
 socialNetwork/service/friend/FriendServices.java
@@ -56,27 +56,19 @@ socialNetwork/repository/group/IRoleGroupRepo.java
  socialNetwork.repository.group.IRoleGroupRepo
 socialNetwork/repository/friend/IFriendRepo.java
  socialNetwork.repository.friend.IFriendRepo
-socialNetwork/model/group/TypeGroup.java
- socialNetwork.model.group.TypeGroup
 socialNetwork/service/friend/IFriendService.java
  socialNetwork.service.friend.IFriendService
-socialNetwork/model/friend/Friend.java
- socialNetwork.model.friend.Friend
-socialNetwork/repository/group/ITypeGroupRepo.java
- socialNetwork.repository.group.ITypeGroupRepo
-socialNetwork/service/group/TypeGroupService.java
- socialNetwork.service.group.TypeGroupService
-socialNetwork/service/group/ITypeGroupService.java
- socialNetwork.service.group.ITypeGroupService
-socialNetwork/service/friend/core/Test.java
- socialNetwork.service.friend.core.Test
 socialNetwork/service/group/MemberService.java
  socialNetwork.service.group.MemberService
-socialNetwork/service/group/RoleGroupService.java
- socialNetwork.service.group.RoleGroupService
+socialNetwork/service/group/GroupService.java
+ socialNetwork.service.group.GroupService
+socialNetwork/service/group/IGroupService.java
+ socialNetwork.service.group.IGroupService
+socialNetwork/model/group/GroupTest.java
+ socialNetwork.model.group.GroupTest
 socialNetwork/service/group/IMemberService.java
  socialNetwork.service.group.IMemberService
-socialNetwork/service/group/IRoleGroupService.java
- socialNetwork.service.group.IRoleGroupService
+socialNetwork/model/group/Member.java
+ socialNetwork.model.group.Member
 socialNetwork/controller/GroupController.java
  socialNetwork.controller.GroupController

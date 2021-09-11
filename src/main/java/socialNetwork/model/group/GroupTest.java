@@ -11,15 +11,12 @@ public class GroupTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nameGroup;
-    @ManyToOne
-    private TypeGroup typeGroup;
 
     public GroupTest(){}
 
-    public GroupTest(long id, String nameGroup, TypeGroup typeGroup) {
+    public GroupTest(long id, String nameGroup) {
         this.id = id;
         this.nameGroup = nameGroup;
-        this.typeGroup = typeGroup;
     }
 
     public long getId() {
@@ -38,12 +35,5 @@ public class GroupTest {
         this.nameGroup = nameGroup;
     }
 
-    public TypeGroup getTypeGroup() {
-        return typeGroup;
-    }
-
-    public void setTypeGroup(TypeGroup typeGroup) {
-        this.typeGroup = typeGroup;
-    }
 
 }

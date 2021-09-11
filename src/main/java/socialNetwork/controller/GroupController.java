@@ -9,16 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import socialNetwork.model.Role;
 import socialNetwork.model.group.GroupTest;
 import socialNetwork.model.group.Member;
-import socialNetwork.model.group.RoleGroup;
-import socialNetwork.model.group.TypeGroup;
 import socialNetwork.service.friend.IUserServices;
 import socialNetwork.service.group.IGroupService;
 import socialNetwork.service.group.IMemberService;
 import socialNetwork.service.group.IRoleGroupService;
-import socialNetwork.service.group.ITypeGroupService;
 
 import java.util.ArrayList;
 
@@ -29,8 +25,6 @@ public class GroupController {
     @Autowired
     IGroupService iGroupService;
 
-    @Autowired
-    ITypeGroupService iTypeGroupService;
 
     @Autowired
     IUserServices iUserServices;
@@ -58,10 +52,6 @@ public class GroupController {
 
     //---------
 
-    @ModelAttribute("groupType")
-    public ArrayList<TypeGroup> getListTypeGroup() {
-        return iTypeGroupService.findAllType();
-    }
 
     @GetMapping("/createGroup")
     public ModelAndView showCreateGroup(){
