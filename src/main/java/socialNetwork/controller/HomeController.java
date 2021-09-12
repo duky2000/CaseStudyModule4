@@ -9,6 +9,8 @@ import socialNetwork.service.ILikesService;
 import socialNetwork.service.IMessageService;
 import socialNetwork.service.INotificationService;
 import socialNetwork.service.IPostService;
+import socialNetwork.service.friend.IFriendService;
+import socialNetwork.service.friend.IUserServices;
 import socialNetwork.service.user.IUserService;
 
 
@@ -29,6 +31,8 @@ public class HomeController {
     IMessageService messageService;
     @Autowired
     INotificationService notificationService;
+    @Autowired
+    IFriendService iFriendService;
 
     @GetMapping("/")
     public ModelAndView showHomePage() {
@@ -69,6 +73,7 @@ public class HomeController {
 //        Notify
 
         modelAndView.addObject("notifications", notificationService.findAllByReceiver(userService.getPrincipal().getId()));
+        modelAndView.addObject("list", iFriendService.findNonFriend(userService.getPrincipal().getId()));
         return modelAndView;
     }
 

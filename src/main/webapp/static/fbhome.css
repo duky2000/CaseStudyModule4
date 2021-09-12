@@ -476,3 +476,28 @@ nav {
 #deletenotify a {
   text-decoration: none;
 }
+
+.menu_down{
+  background: black;
+  width: 180px;
+  height: 10em;
+  margin: 0px auto;
+  line-height: 3em;
+  position: absolute;
+  top: 60px;
+  right: 17px;
+  display: none;
+}
+
+.menu_down li {
+  text-align: center;
+
+}
+
+.menu_down li a:hover {
+  color: #e32879;
+}
+
+.menu_link:hover .menu_down{
+  display: block;
+}

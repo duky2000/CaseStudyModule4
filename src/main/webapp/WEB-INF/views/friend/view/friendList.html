@@ -55,7 +55,7 @@
                                          class="profile-photo-lg">
                                 </div>
                                 <div class="col-md-7 col-sm-7" >
-                                    <h5><a href="#" class="profile-link" th:text="${c.username}"></a></h5>
+                                    <h5><a th:href="@{/profile(iduser=${c.getId()})}" class="profile-link" th:text="${c.username}"></a></h5>
                                     <p th:text="${c.address}"></p>
                                 </div>
                                 <div class="col-md-3 col-sm-3">

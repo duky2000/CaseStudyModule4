@@ -52,7 +52,14 @@
           /></a>
           <h4 th:text="${user.getUsername()}">Dũng Nguyễn</h4>
         </div>
-        <span class="material-icons"> people </span>
+        <div class="menu_link">
+        <a href="#"><span class="material-icons"> people </span></a>
+        <ul class="menu_down">
+          <li th:each="c, loop: ${list}">
+            <a th:text="${c.id_user.username}"></a><a th:href="@{/fr/accept/{id}(id = ${c.id_user.id})}"> yes</a><a th:href="@{/fr/ignore/{id}(id = ${c.id_user.id})}"> cancel</a>
+          </li>
+        </ul>
+        </div>
         <a th:href="@{/message(idsend=${lastestSender})}"><span class="material-icons"> forum </span></a>
         <span class="material-icons" id="bell"> notifications_active </span>
 <!--        thông báo-->
@@ -104,7 +111,7 @@
         </div>
 
         <div class="sidebarRow">
-          <span class="material-icons"> people </span>
+          <a href="/fr/friendList"><span class="material-icons"> people </span></a>
           <h4>People</h4>
         </div>
 
@@ -114,8 +121,8 @@
         </div>
 
         <div class="sidebarRow">
-          <span class="material-icons"> storefront </span>
-          <h4>Marketplace</h4>
+          <a href="/fr/showMyFriend"><span class="material-icons">supervised_user_circle</span></a>
+          <h4>Friends</h4>
         </div>
 
         <div class="sidebarRow">

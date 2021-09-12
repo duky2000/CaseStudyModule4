@@ -82,7 +82,7 @@
 
                         <div class="modal-meta-bottom">
                             <form th:action="@{/create-comment}" method='POST' th:object="${comment}" name="loginBox"
-                                  target="#here">
+                                  target="_self">
                                 <input type="text" class="form-control" placeholder="Leave a commment.."
                                        th:field="*{content}"/>
                                 <input type='hidden' name='postId' th:value='${post.getId()}'/><br>
