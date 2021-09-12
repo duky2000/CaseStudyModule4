@@ -11,12 +11,16 @@ public class GroupTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nameGroup;
+    private String avatar;
+    private String background;
 
     public GroupTest(){}
 
-    public GroupTest(long id, String nameGroup) {
+    public GroupTest(long id, String nameGroup, String avatar, String background) {
         this.id = id;
         this.nameGroup = nameGroup;
+        this.avatar = avatar;
+        this.background = background;
     }
 
     public long getId() {
@@ -35,5 +39,19 @@ public class GroupTest {
         this.nameGroup = nameGroup;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
 }
