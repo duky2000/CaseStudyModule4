@@ -68,85 +68,184 @@
 <!--</body>-->
 <!--</html>-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../../../static/edit.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div class="container">
-    <!--  <div class="alert alert-success" role="alert" *ngIf="isUpdated">{{message}}</div>-->
-    <div class="col-9">
+<!--<div class="container">-->
+<!--    &lt;!&ndash;  <div class="alert alert-success" role="alert" *ngIf="isUpdated">{{message}}</div>&ndash;&gt;-->
+<!--    <div class="col-9">-->
 
-        <form th:object="${appUser}" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <!--                <label >Form Edit</label>-->
-                <br>
-                <img th:src="${appUser.avatar}" width="100px" height="80px">
-                <input th:field="*{avatar}" hidden>
-                <input type="file" name="upImg">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label>Username</label>
-                    <input type="text" class="form-control" th:field="*{username}">
-
-                </div>
-                <div class="form-group col-md-3">
-                    <label>FullName</label>
-                    <input type="text" class="form-control" th:field="*{fullname}">
-                </div>
-                <div class="form-group col-md-3">
-                    <label>Address</label>
-                    <input type="text" class="form-control" th:field="*{address}">
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label>Birthday</label>
-                    <input type="date" class="form-control" th:field="*{dateOfBirthday}">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Email</label>
-                    <input type="text" class="form-control" th:field="*{email}">
-                </div>
-                <div class="form-group col-md-3">
-                    <label>PassWord</label>
-                    <input type="text" class="form-control" th:field="*{password}">
-                </div>
-                <div class="form-group col-md-3">
-                    <label>Repass</label>
-                    <input type="text" class="form-control" th:field="*{repass}">
-                </div>
-
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Phone</label>
-                    <input type="text" class="form-control" th:field="*{phone}">
-                </div>
-                <div class="form-group col-md-3">
-                    <label>#</label>
-                    <input type="text" class="form-control" th:field="*{id}" readonly>
-                </div>
+<!--        <form th:object="${appUser}" method="post" enctype="multipart/form-data">-->
+<!--            <div class="form-group">-->
+<!--                &lt;!&ndash;                <label >Form Edit</label>&ndash;&gt;-->
+<!--                <br>-->
+<!--                <img th:src="${appUser.avatar}" width="100px" height="80px">-->
+<!--                <input th:field="*{avatar}" hidden>-->
+<!--                <input type="file" name="upImg">-->
+<!--            </div>-->
+<!--            <div class="form-row">-->
 <!--                <div class="form-group col-md-3">-->
-<!--                    <label>Role</label>-->
-<!--                    <br>-->
-<!--                    <select th:field="*{role}">-->
-<!--                        <option th:each="role :${listRole}" th:value="${role.id}"-->
-<!--                                th:text="${role.name}"></option>-->
-<!--                    </select>-->
+<!--                    <label>Username</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{username}">-->
 
 <!--                </div>-->
-            </div>
+<!--                <div class="form-group col-md-3">-->
+<!--                    <label>FullName</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{fullname}">-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-3">-->
+<!--                    <label>Address</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{address}">-->
+<!--                </div>-->
+
+<!--                <div class="form-group col-md-3">-->
+<!--                    <label>Birthday</label>-->
+<!--                    <input type="date" class="form-control" th:field="*{dateOfBirthday}">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="form-row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <label>Email</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{email}">-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-3">-->
+<!--                    <label>PassWord</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{password}">-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-3">-->
+<!--                    <label>Repass</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{repass}">-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            <div class="form-row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <label>Phone</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{phone}">-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-3">-->
+<!--                    <label>#</label>-->
+<!--                    <input type="text" class="form-control" th:field="*{id}" readonly>-->
+<!--                </div>-->
+<!--&lt;!&ndash;                <div class="form-group col-md-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label>Role</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <select th:field="*{role}">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option th:each="role :${listRole}" th:value="${role.id}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                th:text="${role.name}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
 
 
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">UpDate
-            </button>
-            | <a href="/" class="btn btn-info">Back</a> |
-            <a th:href="@{/delete/__${appUser.id}__}" class="btn btn-danger">Delete</a>
-        </form>
+<!--            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"-->
+<!--                    data-bs-target="#exampleModal">UpDate-->
+<!--            </button>-->
+<!--            | <a href="/" class="btn btn-info">Back</a> |-->
+<!--            <a th:href="@{/delete/__${appUser.id}__}" class="btn btn-danger">Delete</a>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div class="col-3"></div>-->
+<!--</div>-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            <form th:object="${appUser}" method="post" enctype="multipart/form-data">
+                <h2 class="h3 mb-4 page-title">Settings</h2>
+                <div class="my-4">
+                    <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                               aria-controls="home" aria-selected="false">Profile</a>
+                        </li>
+                    </ul>
+
+<!--                    <div class="row mt-5 align-items-center">-->
+<!--                        <div class="col-md-3 text-center mb-5">-->
+<!--                            <div class="avatar avatar-xl">-->
+<!--                                <img th:src="${appUser.avatar}" width="100px" height="80px">-->
+<!--                                <input th:field="*{avatar}" hidden>-->
+<!--                                |<input type="file" name="upImg">-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <img th:src="${appUser.avatar}" alt="..." class="avatar-img rounded-circle" width="120px" height="90px" >
+                                <input th:field="*{avatar}" hidden>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="file" name="upImg">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4"/>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Username</label>
+                            <input type="text" class="form-control" th:field="*{username}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>FullName</label>
+                            <input type="text" class="form-control" th:field="*{fullname}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Address</label>
+                            <input type="text" class="form-control" th:field="*{address}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Birthday</label>
+                            <input type="date" class="form-control" th:field="*{dateOfBirthday}">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>#</label>
+                            <input type="text" class="form-control" th:field="*{id}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" th:field="*{email}">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" th:field="*{phone}">
+
+                    </div>
+
+                    <hr class="my-4"/>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>PassWord</label>
+                                <input type="text" class="form-control" th:field="*{password}">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Repass</label>
+                                <input type="text" class="form-control" th:field="*{repass}">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal">UpDate
+                    </button>
+                    | <a href="/" class="btn btn-info">Back</a>
+                    | <a th:href="@{/delete/__${appUser.id}__}" class="btn btn-danger">Delete</a>
+                </div>
+            </form>
+        </div>
+
     </div>
-    <div class="col-3"></div>
+
 </div>
 </html>
