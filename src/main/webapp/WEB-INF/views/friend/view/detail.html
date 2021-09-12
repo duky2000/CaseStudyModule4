@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Detail</h1>
-<div th:object="${detail}">
-    <table>
-        <tr>
-            <th>Name</th>
-            <td th:text="*{username}"></td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td th:text="*{address}"></td>
-        </tr>
-        <tr>
-            <th>gmail</th>
-            <td th:text="*{email}"></td>
-        </tr>
-        <tr>
-            <th>phone</th>
-            <td th:text="*{phone}"></td>
-        </tr>
-        <tr>
-            <th>date</th>
-            <td th:text="*{dateOfBirthday}"></td>
-        </tr>
-        <tr>
-            <td><a th:href="@{/fr/app/{id}(id = *{id})}">ket ban</a></td>
-        </tr>
-    </table>
-</div>
-</body>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Detail</h1>-->
+<!--<div th:object="${detail}">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Name</th>-->
+<!--            <td th:text="*{username}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th>Address</th>-->
+<!--            <td th:text="*{address}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th>gmail</th>-->
+<!--            <td th:text="*{email}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th>phone</th>-->
+<!--            <td th:text="*{phone}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th>date</th>-->
+<!--            <td th:text="*{dateOfBirthday}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><a th:href="@{/fr/app/{id}(id = *{id})}">ket ban</a></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

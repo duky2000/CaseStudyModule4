@@ -1,5 +1,6 @@
 package socialNetwork.service.friend;
 
+import org.springframework.data.repository.query.Param;
 import socialNetwork.model.friend.Friend;
 
 import java.util.ArrayList;
@@ -18,4 +19,6 @@ public interface IFriendService {
     ArrayList<Friend> findIdMyFriend(long id_user, long id_friend);
 
     ArrayList<Friend> check(long id_user, long id_friend);
+
+    public ArrayList<Long> getAllFriendPost(@Param("userid") Long userid);
 }

@@ -32,4 +32,7 @@ public interface IFriendRepo extends CrudRepository<Friend, Long> {
     @Query(value = "select * from case_study_4.friend where (friend.id_friend_id = :friend and friend.id_user_id = :user) or (friend.id_friend_id = :user and friend.id_user_id = :friend) and (friend.status = 3 or friend.status = 0);", nativeQuery = true)
     public ArrayList<Friend> check(@Param("friend")long id_friend, @Param("user") long id_user);
 
+    @Query(nativeQuery = true, value = "select id_friend_id from friend where status = 1 and id_user_id = :userid")
+    public ArrayList<Long> getAllFriendPost(@Param("userid") Long userid);
+
 }

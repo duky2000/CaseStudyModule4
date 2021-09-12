@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import socialNetwork.model.Post;
+import socialNetwork.model.friend.Friend;
 import socialNetwork.service.ILikesService;
 import socialNetwork.service.IMessageService;
 import socialNetwork.service.INotificationService;
@@ -42,8 +43,16 @@ public class HomeController {
             if (likesService.findSumLikes(posts.get(i).getId()) == null) posts.get(i).setLikes(0);
             else posts.get(i).setLikes(likesService.findSumLikes(posts.get(i).getId()));
         }
+        ArrayList<Post> finalPosts = new ArrayList<>();
+        ArrayList<Long> listFriends = iFriendService.getAllFriendPost(userService.getPrincipal().getId());
+        listFriends.add(userService.getPrincipal().getId());
+        for (Post p : posts) {
+            if (listFriends.contains(p.getUser().getId())) {
+                finalPosts.add(p);
+            }
+        }
 
-        modelAndView.addObject("posts", posts);
+        modelAndView.addObject("posts", finalPosts);
         modelAndView.addObject("post", new Post());
         modelAndView.addObject("user", userService.getPrincipal());
         Long lastestSender;

@@ -286,7 +286,8 @@
         <!-- message sender ends -->
 
         <!-- post starts -->
-        <div class="post" th:each="p, loop: ${posts}">
+        <h2 th:unless="${posts.size() > 0}">Hãy tạo bài đăng hoặc kết bạn để không phải nhìn thấy dòng chữ này :))</h2>
+        <div th:if="${posts.size() > 0}" class="post" th:each="p, loop: ${posts}">
           <div class="post__top">
             <a th:href="@{/profile(iduser=${p.getUser().getId()})}"><img
               class="user__avatar post__avatar"

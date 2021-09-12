@@ -23,6 +23,7 @@ public class User {
     private String address;
     private Date dateOfBirthday;
     private String repass;
+    @Column(name = "avatar", nullable = false, columnDefinition = "varchar(255) default /resource/static/uploaded/default-avatar.jpg")
     private String avatar;
 
     @ManyToOne
