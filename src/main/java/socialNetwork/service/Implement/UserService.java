@@ -64,6 +64,21 @@ public class UserService implements UserDetailsService, IUserService {
         userRepository.delete(appUser);
     }
 
+    @Override
+    public Boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Boolean existsByPhone(String phone) {
+        return userRepository.existsByPhone(phone);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 
     @Override
     public List<User> findAllByUsernameContaining(String name) {

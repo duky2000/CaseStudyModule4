@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +29,12 @@
                     <button type="submit" class="btn btn-danger">Yes</button>
                 </form>
             </td>
-
             <td>
-                <form method="post" enctype="multipart/form-data">
+            </td>
+            <td>
+                <form th:object="${user}" method="post" enctype="multipart/form-data">
                     <input type="hidden" th:value="${user.id}">
-                    <a href="/" type="submit" class="btn btn-info">No</a>
+                    <a th:href="@{/edit/__${user.id}__}"type="submit" class="btn btn-info">No</a>
                 </form>
             </td>
         </tr>

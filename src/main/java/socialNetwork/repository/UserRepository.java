@@ -10,5 +10,11 @@ public interface UserRepository extends CrudRepository<User,Long> {
 
    List<User>  findAllByUsernameContaining(String name);
 
+   Boolean existsByUsername(String username);
+
+   Boolean existsByPhone (String phone);
+
+   Boolean existsByEmail (String email);
+
 
 }

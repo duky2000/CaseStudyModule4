@@ -1,4 +1,5 @@
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
 <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
 <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
@@ -10,6 +11,7 @@
 <!--        background-color: #17a2b8;-->
 <!--        height: 100vh;-->
 <!--    }-->
+
 <!--    #login .container #login-row #login-column #login-box {-->
 <!--        margin-top: 120px;-->
 <!--        max-width: 600px;-->
@@ -17,212 +19,247 @@
 <!--        border: 1px solid #9C9C9C;-->
 <!--        background-color: #EAEAEA;-->
 <!--    }-->
+
 <!--    #login .container #login-row #login-column #login-box #login-form {-->
 <!--        padding: 20px;-->
 <!--    }-->
+
 <!--    #login .container #login-row #login-column #login-box #login-form #register-link {-->
 <!--        margin-top: -85px;-->
 <!--    }-->
 <!--</style>-->
 <!--<body>-->
-<!--<div class="container">-->
-<!--    <form th:object="${user}" th:action="@{/create}" method="post" enctype="multipart/form-data">-->
-<!--        <table class="table table-bordered">-->
-<!--            <tbody>-->
-<!--            <tr>-->
-<!--                <td><input placeholder="nhập userName" th:field="*{username}"></td>-->
-<!--                <td><input placeholder="nhập passWord" th:field="*{password}"></td>-->
-<!--                <td><input placeholder="nhập email" th:field="*{email}"></td>-->
-<!--                <td><input placeholder="nhập phone" th:field="*{phone}"></td>-->
-<!--            <tr>-->
-<!--                <td><input placeholder="nhập address" th:field="*{address}"></td>-->
-<!--                <td><input type="date" placeholder="nhập dateOfBirthday" th:field="*{dateOfBirthday}"></td>-->
-<!--                <td><input type="text" placeholder="nhập repass" th:field="*{repass}"></td>-->
-<!--                <td><input type="file" name="upImg"></td>-->
-<!--            <tr>-->
+<!--<div id="login">-->
+<!--    <h3 class="text-center text-white pt-5">Signup form</h3>-->
+<!--    <h6 class="text-center text-white pt-5"> Language: <a class="text-center text-white pt-5" href="?lang=en">English</a> | <a class="text-center text-white pt-5" href="?lang=vi">Việt Nam</a></h6>-->
+<!--    <div class="container">-->
+<!--        <div id="login-row" class="row justify-content-center align-items-center">-->
+<!--            <div id="login-column" class="col-md-6">-->
+<!--                <div id="login-box" class="col-md-12">-->
+<!--                    <form id="login-form" class="form" th:object="${user}" th:action="@{/signup}" method="post"-->
+<!--                          enctype="multipart/form-data">-->
+<!--                        <table>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="username" class="text-info" th:text="#{username}"></label><br>-->
+<!--                                        <input placeholder="nhập userName" id="username" th:field="*{username}"-->
+<!--                                               class="form-control">-->
+<!--                                        <p th:object="${username}"></p>-->
 
-<!--            <tr>-->
 
-<!--                <td>-->
-<!--                    <button type="submit" class="btn btn-success">Add New</button>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td><a href="/" class="btn btn-info">Back</a></td>-->
-<!--            </tr>-->
+<!--                                    </div>-->
+<!--                                </td>-->
 
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </form>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="password" class="text-info" th:text="#{password}"></label><br>-->
+<!--                                        <input placeholder="nhập passWord" id="password" th:field="*{password}"-->
+<!--                                               class="form-control">-->
+<!--                                        <p style="color: red" th:if="${#fields.hasErrors('password')}"-->
+<!--                                           th:errors="*{password}"></p>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="email" class="text-info" th:text="#{email}"></label><br>-->
+<!--                                        <input placeholder="nhập email" id="email" th:field="*{email}"-->
+<!--                                               class="form-control">-->
+<!--                                        <p style="color: red" th:if="${#fields.hasErrors('email')}"-->
+<!--                                           th:errors="*{email}"></p>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="phone" class="text-info" th:text="#{phone}"></label><br>-->
+<!--                                        <input placeholder="nhập phone" id="phone" th:field="*{phone}"-->
+<!--                                               class="form-control">-->
+<!--                                        <p style="color: red" th:if="${#fields.hasErrors('phone')}"-->
+<!--                                           th:errors="*{phone}"></p>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="address" class="text-info" th:text="#{address}"></label><br>-->
+<!--                                        <input placeholder="nhập address" id="address" th:field="*{address}"-->
+<!--                                               class="form-control">-->
+<!--                                        <p style="color: red" th:if="${#fields.hasErrors('address')}"-->
+<!--                                           th:errors="*{address}"></p>-->
+
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="dateOfBirthday" class="text-info" th:text="#{dateOfBirthday}"></label><br>-->
+<!--                                        <input type="date" placeholder="nhập dateOfBirthday" id="dateOfBirthday"-->
+<!--                                               th:field="*{dateOfBirthday}" class="form-control">-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="repass" class="text-info" th:text="#{repass}"></label><br>-->
+<!--                                        <input type="password" placeholder="nhập repass" id="repass"-->
+<!--                                               th:field="*{repass}" class="form-control">-->
+<!--                                        <p th:object="${message}"></p>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="fullname" class="text-info" th:text="#{fullname}"></label><br>-->
+<!--                                        <input type="text" placeholder="nhập fullName" id="fullname"-->
+<!--                                               th:field="*{fullname}" class="form-control">-->
+
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Signup">-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <a href="/login" class="btn btn-info">Back</a>-->
+<!--                                </td>-->
+
+<!--                            </tr>-->
+
+<!--                        </table>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--</div>-->
-<!--&lt;!&ndash;<div id="login">&ndash;&gt;-->
-<!--&lt;!&ndash;    <h3 class="text-center text-white pt-5">Login form</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="container">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div id="login-row" class="row justify-content-center align-items-center">&ndash;&gt;-->
-<!--&lt;!&ndash;            <div id="login-column" class="col-md-6">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div id="login-box" class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <form id="login-form" class="form" action="/admin" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h3 class="text-center text-info">Login</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="username" class="text-info">Username:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" name="username" id="username" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="password" class="text-info">Password:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" name="password" id="password" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="password" class="text-info">Email:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" name="email" id="email" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="password" class="text-info">Phone:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" name="phone" id="phone" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="password" class="text-info">Address:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" name="address" id="address" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="password" class="text-info">DateOfBirthday:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="date" name="dateOfBirthday" id="dateOfBirthday" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="password" class="text-info">Repass:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" name="repass" id="repass" class="form-control">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div id="register-link" class="text-right">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <a href="#" class="text-info">Register here</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
 <!--</body>-->
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #17a2b8;
-        height: 100vh;
+    .divider-text {
+        position: relative;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
-    #login .container #login-row #login-column #login-box {
-        margin-top: 120px;
-        max-width: 600px;
-        height: 320px;
-        border: 1px solid #9C9C9C;
-        background-color: #EAEAEA;
+    .divider-text span {
+        padding: 7px;
+        font-size: 12px;
+        position: relative;
+        z-index: 2;
     }
 
-    #login .container #login-row #login-column #login-box #login-form {
-        padding: 20px;
+    .divider-text:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        top: 55%;
+        left: 0;
+        z-index: 1;
     }
 
-    #login .container #login-row #login-column #login-box #login-form #register-link {
-        margin-top: -85px;
+    .btn-facebook {
+        background-color: #405D9D;
+        color: #fff;
+    }
+
+    .btn-twitter {
+        background-color: #42AEEC;
+        color: #fff;
     }
 </style>
-<body>
-<div id="login">
-    <h3 class="text-center text-white pt-5">Signup form</h3>
-    <div class="container">
-        <div id="login-row" class="row justify-content-center align-items-center">
-            <div id="login-column" class="col-md-6">
-                <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form" th:object="${user}" th:action="@{/signup}" method="post"
-                          enctype="multipart/form-data">
-                        <table>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="username" class="text-info">Username:</label><br>
-                                        <input placeholder="nhập userName" id="username" th:field="*{username}"
-                                               class="form-control">
 
-                                    </div>
-                                </td>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-                                <td>
-                                    <div class="form-group">
-                                        <label for="password" class="text-info">Password:</label><br>
-                                        <input placeholder="nhập passWord" id="password" th:field="*{password}"
-                                               class="form-control">
 
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="email" class="text-info">Email:</label><br>
-                                        <input placeholder="nhập email" id="email" th:field="*{email}"
-                                               class="form-control">
-                                    </div>
-                                </td>
+<div class="container">
+    <br>
 
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="phone" class="text-info">Phone:</label><br>
-                                        <input placeholder="nhập phone" id="phone" th:field="*{phone}"
-                                               class="form-control">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="address" class="text-info">Address:</label><br>
-                                        <input placeholder="nhập address" id="address" th:field="*{address}"
-                                               class="form-control">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <p>
+                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via
+                    facebook</a>
+            </p>
+            <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p>
+            <div th:if="${message}"><p style="color: red" th:text="${message}"></p></div>
+            <form th:object="${user}" th:action="@{/signup}" method="post">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="username" class="form-control" placeholder="User name" type="text"
+                           th:field="*{username}">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="fullname" class="form-control" placeholder="Full name" type="text" th:field="*{fullname}">
+                    <p style="color: red" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></p>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="email" class="form-control" placeholder="Email " type="email" th:field="*{email}">
+                    <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <input name="phone" class="form-control" placeholder="Phone number" type="text" th:field="*{phone}">
+                    <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <input name="address" class="form-control" placeholder=" Address" type="text" th:field="*{address}">
+                    <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+                </div> <!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" class="form-control" placeholder="Create password" type="password" th:field="*{password}">
+                    <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="repass" class="form-control" placeholder="Repeat password" type="password" th:field="*{repass}">
+                    <p th:object="${message}"></p>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
 
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="dateOfBirthday" class="text-info">Birthday:</label><br>
-                                        <input type="date" placeholder="nhập dateOfBirthday" id="dateOfBirthday"
-                                               th:field="*{dateOfBirthday}" class="form-control">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="repass" class="text-info">Repass:</label><br>
-                                        <input type="password" placeholder="nhập repass" id="repass"
-                                               th:field="*{repass}" class="form-control">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Signup">
-                                    </div>
-                                </td>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="dateOfBirthday" class="form-control"  type="date" th:field="*{dateOfBirthday}">
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Create User</button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Have an account? <a href="/login">Log In</a></p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
 
-                                <td><p th:object="${message}"></p></td>
-                                <td><p th:object="${username}"></p></td>
-                                <td><p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></td>
-<!--                                <td><p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p></td>-->
-<!--                                <td><p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p></td>-->
-<!--                                <td><p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p></td>-->
-                            </tr>
-
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-</body>
+<!--container end.//-->
+
+</html>

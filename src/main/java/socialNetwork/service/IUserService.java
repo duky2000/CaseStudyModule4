@@ -18,6 +18,12 @@ public interface IUserService {
 
     void delete(User appUser);
 
+    Boolean existsByUsername(String username);
+
+    Boolean existsByPhone (String phone);
+
+    Boolean existsByEmail (String email);
+
 
 
     List<User> findAllByUsernameContaining(String name);

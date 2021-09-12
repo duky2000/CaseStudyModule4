@@ -13,11 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
-    @Size(min = 6,message = "passWord > 6")
+    @Size(min = 3,message = "full name greater than 3")
+    private String fullname;
+    @Size(min = 6,message = "password greater than 6")
     private String password;
-    @Pattern(regexp = "^[a-zA-Z0-9]+@[a-z]+\\.[a-z]+$", message = "sai email")
+    @Pattern(regexp = "^[a-zA-Z0-9]+@[a-z]+\\.[a-z]+$", message = "wrong email")
     private String email;
-    @Pattern(regexp = "^[0][0-9]{9}$", message = "sdt phai bat dau tu 0 va 9 so")
+    @Pattern(regexp = "^[0][0-9]{9}$", message = "phone starting from 0 and 9 numbers")
     private String phone;
     @NotEmpty(message = "Not null")
     private String address;
@@ -34,14 +36,23 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, String phone, String address, Date dateOfBirthday, String repass) {
+    public User(String username, String fullname, String password, String email, String phone, String address, Date dateOfBirthday, String repass) {
         this.username = username;
+        this.fullname = fullname;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.dateOfBirthday = dateOfBirthday;
         this.repass = repass;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public long getId() {
@@ -124,17 +135,5 @@ public class User {
         this.role = role;
     }
 
-    public User(long id, String username, String password, String email, String phone, String address, Date dateOfBirthday, String repass, String avatar, Role role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.dateOfBirthday = dateOfBirthday;
-        this.repass = repass;
-        this.avatar = avatar;
-        this.role = role;
 
-    }
 }
