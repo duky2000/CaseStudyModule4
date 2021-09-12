@@ -38,5 +38,10 @@ public class FriendServices implements IFriendService{
         return iFriendRepo.findId(id_user, id_friend);
     }
 
+    @Override
+    public ArrayList<Friend> findIdMyFriend(long id_user, long id_friend) {
+        return iFriendRepo.findFriendById_friendAndAndId_user(id_friend, id_user);
+    }
+
 
 }

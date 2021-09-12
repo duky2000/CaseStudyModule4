@@ -183,4 +183,22 @@ public class FriendController {
             return listUser;
         }
     }
+
+    @GetMapping("/deleteFriend/{id}")
+    public ModelAndView deleteMyFriend(@PathVariable long id){
+        ModelAndView modelAndView = new ModelAndView("redirect:/fr/showMyFriend");
+        long id_user = iUserServices.findIdByUsername(getPrincipal());
+        System.out.println(id);
+        System.out.println(id_user);
+        deleteMyFriendTest(id_user, id);
+        return modelAndView;
+    }
+
+    private void deleteMyFriendTest(long id_user, long id_friend){
+       ArrayList<Friend> list = iFriendService.findIdMyFriend(id_friend, id_user);
+        Friend friend_1 = list.get(0);
+        Friend friend_2 = list.get(1);
+        iFriendService.delete(friend_1);
+        iFriendService.delete(friend_2);
+    }
 }
