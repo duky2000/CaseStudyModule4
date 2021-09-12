@@ -15,5 +15,7 @@ public interface IFriendService {
 
     Long findId(long id_user, long id_friend);
 
+    ArrayList<Friend> findIdMyFriend(long id_user, long id_friend);
 
+    ArrayList<Friend> check(long id_user, long id_friend);
 }
