@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import socialNetwork.model.User;
-import socialNetwork.service.IUserService;
+import socialNetwork.service.user.IUserService;
 
 import java.util.ArrayList;
 

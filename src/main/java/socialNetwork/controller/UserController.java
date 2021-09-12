@@ -12,8 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import socialNetwork.model.User;
 import socialNetwork.model.Role;
-import socialNetwork.service.Implement.RoleService;
-import socialNetwork.service.Implement.UserService;
+import socialNetwork.service.user.RoleService;
+import socialNetwork.service.user.UserService;
 import socialNetwork.validate.ValidateUserName;
 
 import javax.validation.Valid;
@@ -22,6 +22,8 @@ import java.io.IOException;
 
 @Controller
 public class UserController {
+    @Value("${img-path}")
+    private String fileUpload;
     @Autowired
     UserService userService;
 
@@ -31,8 +33,6 @@ public class UserController {
     @Autowired
     ValidateUserName validateUserName;
 
-    @Value("${static-path}")
-    private String fileUpload;
 
 
     @GetMapping("/login")
@@ -56,13 +56,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/")
-    public ModelAndView showFormUser() {
-        ModelAndView modelAndView = new ModelAndView("user/home");
-        Long idUser = userService.findByName(getPrincipal()).getId();
-        modelAndView.addObject("idUserName", idUser);
-        return modelAndView;
-    }
+//    @GetMapping("/")
+//    public ModelAndView showFormUser() {
+//        ModelAndView modelAndView = new ModelAndView("user/home");
+//        Long idUser = userService.findByName(getUsernamePrincipal()).getId();
+//        modelAndView.addObject("idUserName", idUser);
+//        return modelAndView;
+//    }
 
     @ModelAttribute("listRole")
     public Iterable<Role> listRole() {
@@ -123,8 +123,8 @@ public class UserController {
     public String edit(@RequestParam("upImg") MultipartFile upImg, @ModelAttribute User user) {
         String nameImg = upImg.getOriginalFilename();
         try {
-            FileCopyUtils.copy(upImg.getBytes(), new File(fileUpload +"WEB-INF\\file\\"+ nameImg));
-            user.setAvatar("/resource/WEB-INF/file/"+nameImg);
+            FileCopyUtils.copy(upImg.getBytes(), new File(fileUpload +"static\\uploaded\\"+ nameImg));
+            user.setAvatar("/resource/static/uploaded/"+nameImg);
         } catch (IOException e) {
             System.err.println("err upload file");
         }
@@ -139,7 +139,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    private String getPrincipal() {
+    private String getUsernamePrincipal() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

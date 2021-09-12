@@ -46,7 +46,7 @@ import java.util.Properties;
 @PropertySource("classpath:static-path.properties")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
-    @Value("${static-path}")
+    @Value("${img-path}")
     private String fileUpload;
 
     @Override
@@ -84,7 +84,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resource/**")
-                .addResourceLocations("file:"+fileUpload);
+                .addResourceLocations("file:E:\\CodeGym\\Module 4\\CaseStudy\\case-study-module4\\CaseStudyModule4\\src\\main\\webapp\\");
     }
 
     @Bean
@@ -100,7 +100,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/case_study_4");
         dataSource.setUsername("root");
-        dataSource.setPassword("son@22122002");
+        dataSource.setPassword("dung1998");
         return dataSource;
     }
 

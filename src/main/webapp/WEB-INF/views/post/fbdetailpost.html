@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail post</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/resource/static/detailpost.css">
+</head>
+<body>
+<div class="modal img-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 modal-image">
+                        <img class="img-responsive " th:src="@{${post.getImg()}}"
+                             style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="col-md-4 modal-meta">
+                        <div class="modal-meta-top">
+                            <button type="button" class="close"><a href="/"><span aria-hidden="true">×</span><span
+                                    class="sr-only">Close</span></a></button>
+                            <div class="img-poster clearfix">
+                                <a th:href="@{/profile(iduser=${post.getUser().getId()})}"><img class="img-circle"
+                                                                                                th:src="@{${post.user.getAvatar()}}"/></a>
+                                <strong><a th:href="@{/profile(iduser=${post.getUser().getId()})}"
+                                           th:text="${post.user.username}">John Doe</a></strong>
+                                <span th:text="${result}">12 minutes ago</span>
+                            </div>
+                            <div class="clearfix" style="margin: 10px 0;">
+                                <div>
+                                    <a href="" class="d-inline-block text-muted">
+                                        <small class="align-middle">
+                                            <strong th:text="${sumLikes}">123</strong> Likes</small>
+                                    </a>
+                                    <a href="javascript:void(0)" class="d-inline-block text-muted ml-3">
+                                        <small class="align-middle">
+                                            <strong th:text="${comments.size()}">12</strong> Comments</small>
+                                    </a>
+                                </div>
+                                <div class="likecomment" style="margin-top: 15px;">
+                                    <a class=" col-md-6" th:href="@{/likes-post(id=${post.getId()}, back='detail')}"
+                                       style="color: #3B5998"><i class="far fa-thumbs-up" style="cursor: pointer;"></i>
+                                        Like</a>
+                                    <a type="button" class=" col-md-6"><i class="far fa-comment"
+                                                                          style="cursor: pointer;"></i> Comment</a>
+                                </div>
+                            </div>
+
+                            <ul class="img-comment-list">
+                                <li th:each="c: ${comments}">
+                                    <div class="comment-img">
+                                        <img th:src="@{${c.user.getAvatar()}}">
+                                    </div>
+                                    <div class="comment-text">
+                                        <strong><a th:href="@{/profile(iduser=${c.user.getId()})}"
+                                                   th:text="${c.user.username}">Jane Doe</a></strong>
+                                        <p th:text="${c.content}">Hello this is a test comment.</p> <span
+                                            class="date sub-text"
+                                            th:text="${c.getCommentTime()}">on December 5th, 2016</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="modal-meta-body" style="position: relative;">
+                            <a href="" class="d-inline-block text-muted">
+                              <small class="align-middle">
+                                <strong>123</strong> Likes</small>
+                            </a>
+                            <a href="javascript:void(0)" class="d-inline-block text-muted ml-3">
+                              <small class="align-middle">
+                                <strong>12</strong> Comments</small>
+                            </a>
+                          </div> -->
+
+                        <div class="modal-meta-bottom">
+                            <form th:action="@{/create-comment}" method='POST' th:object="${comment}" name="loginBox"
+                                  target="#here">
+                                <input type="text" class="form-control" placeholder="Leave a commment.."
+                                       th:field="*{content}"/>
+                                <input type='hidden' name='postId' th:value='${post.getId()}'/><br>
+                                <input type='hidden' name='back' value="detail"/><br>
+                                <input type="submit"
+                                       style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+                                       tabindex="-1"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+</body>
+</html>

@@ -25,10 +25,9 @@ public class User {
     private String repass;
     private String avatar;
 
-
     @ManyToOne
-
-    Role role;
+    @JoinColumn
+    private Role role;
 
 
     public User() {

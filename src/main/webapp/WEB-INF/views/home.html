@@ -1,0 +1,54 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Home</title>-->
+<!--    <link href='/resources/static/style.css' rel='stylesheet' type='text/css'>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p class='right'>User:<a th:text="${user.getUsername()}" th:href="@{/profile}"></a>-->
+<!--    <a th:href="@{/logout}">Sign out</a>-->
+<!--    <a th:href="@{/notify}">Xem thông báo</a>-->
+<!--    <a th:href="@{/message(idsend=${lastestSender})}">Xem tin nhắn</a>-->
+<!--<h1 class='center'>Social Network</h1>-->
+<!--<br><br>-->
+<!--<br>-->
+<!--<div class='center'>-->
+<!--    <form th:action="@{/create-post}" method="post" th:object="${post}" enctype="multipart/form-data">-->
+<!--        <input type="text" hidden name="site" value="home">-->
+<!--        <input type="text" th:field="*{tag}" placeholder="Enter post tag">-->
+<!--        <textarea th:field="*{content}" cols="30" rows="10" placeholder="Write something..."></textarea>-->
+<!--        <input type="file" name="imgPost">-->
+<!--        <input type='submit' value="Đăng">-->
+<!--    </form>-->
+<!--</div>-->
+<!--<br>-->
+<!--<h3 class='center'>All posts</h3>-->
+<!--<div class='center'>-->
+<!--    <table class='center'>-->
+<!--        <tr>-->
+<!--            <th>User</th>-->
+<!--            <th>Avatar User</th>-->
+<!--            <th>Tag</th>-->
+<!--            <th>Content</th>-->
+<!--            <th>Image</th>-->
+<!--            <th>Post Time</th>-->
+<!--            <th colspan="2">Like</th>-->
+<!--            <th>Detail</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="p, loop: ${posts}">-->
+<!--            <td><a th:href="@{/profile(iduser=${p.getUser().getId()})}" th:text="${p.getUser().getUsername()}"></a></td>-->
+<!--            <td><img th:src="@{${p.getUser().getAvatar()}}" style="width: 30px; height: 30px;"></td>-->
+<!--            <td th:text="${p.getTag()}"></td>-->
+<!--            <td th:text="${p.getContent()}"></td>-->
+<!--            <td><img th:src="@{${p.getImg()}}" alt="img" style="width: 150px; height: 150px;"></td>-->
+<!--            <td th:text="${displayTimes.get(loop.index)}"></td>-->
+<!--            <td th:text="${p.getLikes()}"></td>-->
+<!--            <td><a th:href="@{/likes-post(id=${p.getId()}, back='home')}" style="color: #3B5998">Like</a></td>-->
+<!--            <td><a th:href="@{/detail-post(id=${p.getId()})}">Xem chi tiết</a></td>-->
+<!--&lt;!&ndash;            <td th:text="${p.getComments()}"></td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/resource/static/message.css">
+</head>
+<body>
+<div class="container">
+    <h3 class=" text-center">Tin nhắn</h3>
+    <h1 style="color: #2ecc71" th:if="${notfound}">Haha thằng này không biết dùng chức năng nhắn tin này!</h1>
+    <div th:if="${messages.size() > 0}" class="messaging">
+        <div class="inbox_msg">
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="recent_heading">
+                        <h4>Gần đây</h4>
+                    </div>
+                    <div class="srch_bar">
+                        <div class="stylish-input-group">
+                            <input type="text" class="search-bar" placeholder="Search">
+                            <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span></div>
+                    </div>
+                </div>
+                <!--Nhớ thêm active_chat-->
+                <div class="inbox_chat">
+                    <div class="chat_list" th:each="s: ${senders}">
+                        <div class="chat_people">
+                            <div class="chat_img"><img th:if="${s.getSender().getId()} == ${currentid}"
+                                                       th:src="@{${s.getReceiver().getAvatar()}}" alt="sunil">
+                                <img th:if="${s.getSender().getId()} != ${currentid}"
+                                     th:src="@{${s.getSender().getAvatar()}}" alt="sunil">
+                            </div>
+                            <div class="chat_ib">
+                                <a th:href="@{/message(idsend=${s.getReceiver().getId()})}"><h5
+                                        th:if="${s.getSender().getId()} == ${currentid}"
+                                        th:text="${s.getReceiver().getUsername()}"><span class="chat_date"
+                                                                                         th:text="${s.getMessageTime()}"></span>
+                                </h5></a>
+                                <a th:href="@{/message(idsend=${s.getSender().getId()})}"><h5
+                                        th:if="${s.getSender().getId()} != ${currentid}"
+                                        th:text="${s.getSender().getUsername()}"><span class="chat_date"
+                                                                                       th:text="${s.getMessageTime()}"></span>
+                                </h5></a>
+                                <p th:text="${s.getContent()}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mesgs">
+                <div class="msg_history">
+                    <div th:each="m : ${messages}">
+                        <div th:if="${m.getSender().getId()} != ${currentid}">
+                            <div class="incoming_msg">
+                                <div class="incoming_msg_img"><img th:src="@{${m.getSender().getAvatar()}}" alt="sunil">
+                                </div>
+                                <div class="received_msg">
+                                    <div class="received_withd_msg">
+                                        <p th:text="${m.getContent()}"></p>
+                                        <span class="time_date" th:text="${m.getMessageTime()}"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${m.getSender().getId()} == ${currentid}">
+                            <div class="outgoing_msg">
+                                <div class="sent_msg">
+                                    <p th:text="${m.getContent()}"></p>
+                                    <span class="time_date" th:text="${m.getMessageTime()}"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="type_msg">
+                    <div class="input_msg_write">
+                        <form method="post" th:object="${message}">
+                            <input type="text" class="write_msg" placeholder="Type a message" th:field="*{content}"/>
+                            <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
+                                                                          aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

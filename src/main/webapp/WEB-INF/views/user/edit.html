@@ -40,7 +40,10 @@
                 <td><input th:field="*{repass}"></td>
             <tr>
             <tr>
-               <td><img th:src="@{'/resource/'+${appUser.avatar}}" width="150px" height="80px"></td>
+               <td>
+                   <img th:src="@{*{avatar}}" width="150px" height="80px">
+                   <input th:field="*{avatar}" hidden>
+               </td>
                 <td><input type="file" name="upImg"></td>
             <tr>
             <tr>

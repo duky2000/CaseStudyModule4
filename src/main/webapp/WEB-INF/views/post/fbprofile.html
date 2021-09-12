@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/resource/static/assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="/resource/static/assets/css/style.css">
+
+    <!-- jQuery -->
+    <script src="/resource/static/assets/js/jquery-3.1.0.min.js"></script>
+
+    <!-- Velocity JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.ui.min.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="/resource/static/assets/js/bootstrap.js"></script>
+    <script src="/resource/static/assets/js/script.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand" th:href="@{/}">
+                    <img src="/resource/static/assets/images/logo.png" alt="Facecook" class="facecook-logo">
+                    <!-- Facecook -->
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-search" placeholder="Search" value="Dũng CT">
+                    </div>
+                    <button type="submit" class="btn btn-default btn-search">
+        	<i class="glyphicon glyphicon-search"></i>
+        </button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dp-name">
+                        <a href="#">
+                            <img th:src="@{${currentuser.getAvatar()}}" alt="Full Name" class="nav-dp" style="width: 32px; height: 32px;">
+                            <span th:text="${currentuser.getUsername()}"></span>
+                        </a>
+                    </li>
+                    <li class="nav-icons"><a href="#"><i class="glyphicon glyphicon-user"></i> <span>Friends</span></a></li>
+                    <li class="nav-icons"><a href="#"><i class="glyphicon glyphicon-inbox"></i> <span>Messages</span></a></li>
+                    <li class="nav-icons"><a href="#"><i class="glyphicon glyphicon-globe"></i> <span>Notifications</span></a></li>
+                    <li class="dropdown nav-icons">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-lock"></i> <i class="glyphicon glyphicon-chevron-down"></i> <span>More</span></a>
+                        <ul class="dropdown-menu settings-drop">
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Manage Pages</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/logout}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- Nav closed -->
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="dp">
+                <img th:src="@{${user.getAvatar()}}" alt="Full Name" class="thumbnail dp-img" style="width: 160px; height: 160px;">
+
+                <a href="#" class="dp-profile-name" th:text="${user.getUsername()}"> <i class="glyphicon glyphicon-ok-sign"></i></a>
+
+
+            </div>
+
+            <div th:if="${user.getUsername() != currentuser.getUsername()}" class="f-buttons">
+                <button class="btn btn-primary btn-f-a">
+			<i class="glyphicon glyphicon-plus"></i> Add Friends</button>
+                <button class="btn btn-primary btn-f-o"> <i class="glyphicon glyphicon-ok"></i> Friends </button>
+            </div>
+        </div>
+        <!-- Jumbotron Container -->
+    </div>
+    <!-- End of Jumbotron -->
+
+    <div class="timeline-nav">
+        <div class="nav nav-pills">
+            <li class="active"><a href="#">Timeline</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Friends <span class="label label-primary">26k</span></a></li>
+            <li><a href="#">Photos</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="glyphicon glyphicon-chevron-down"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Books</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Languages</a></li>
+                    <li><a href="#">Interests</a></li>
+                    <li><a href="#">Shows</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Manage Sections</a></li>
+                </ul>
+            </li>
+            <li th:if="${user.getUsername() == currentuser.getUsername()}"><a th:href="@{/edit/{id} (id = ${currentuser.getId()})}">Edit Profile</a></li>
+        </div>
+    </div>
+    <!-- Timeline nav ends -->
+
+    <div class="row">
+        <div class="container-fluid">
+            <div class="col-md-1 col sm-1" style="height:100%"></div>
+            <div class="col-md-3 col sm-3" style="height:100%">
+                <div class="panel my-info ">
+                    <div class="panel-heading">
+                        <h4><i class="glyphicon glyphicon-globe"></i> Intro</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            Hello everyone. This is <a href="http://fb.com">Dũng CT</a> and I am the co-founder of DSK Web.
+                            <br><br> You can check me out at <a href="http://fb.com">www.about.me/dungdz98</a>.
+                        </p>
+                        <hr>
+                        <p><i class="glyphicon glyphicon-user"></i> Founder at <a href="#">Facecook</a></p>
+                        <p><i class="glyphicon glyphicon-map-marker"></i> Lives at <a href="#">Hà Nội, Việt Nam</a></p>
+                        <p><i class="glyphicon glyphicon-book"></i> Goes to <a href="#">Đại học Công nghiệp Hà Nội</a></p>
+                        <p><i class="glyphicon glyphicon-star"></i> Followed to <a href="#">1M+</a> subscribes.</p>
+                        <!-- Ofcourse not -->
+                        <p><i class="glyphicon glyphicon-cutlery"></i> Eat <a href="#">anything</a> you give from heart.</p>
+
+                        <!-- My images row -->
+
+                    </div>
+                </div>
+                <!-- Panel my-info closed -->
+
+                <div class="panel my-photo">
+                    <div class="panel-heading">
+                        <h4><i class="glyphicon glyphicon-star"></i> Photos <i class="glyphicon glyphicon-chevron-down pull-right"></i></h4>
+                    </div>
+                    <div class="panel-body" style="padding-right: 0;">
+                        <div class="row my-info-img">
+                            <div class="col-sm-6 col-xs-6" th:each="p : ${posts}">
+                                <a th:href="@{/detail-post(id=${p.getId()})}"><img th:src="@{${p.getImg()}}" alt="" style="height: 110px;"></a>
+                            </div>
+                        </div>
+                        <!-- My images row -->
+                    </div>
+
+                </div>
+                <!-- My-Photo div -->
+
+                <div class="panel my-friends">
+                    <div class="panel-heading">
+                        <h4><i class="glyphicon glyphicon-user"></i> Friends <span class="label label-primary">32k</span> <i class="glyphicon glyphicon-chevron-down pull-right"></i></h4>
+                    </div>
+                    <div class="panel-body" style="padding-right: 0">
+                        <div class="row my-info-img">
+                            <div class="col-sm-6 col-xs-6">
+                                <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                            </div>
+                        </div>
+                        <div class="row my-info-img">
+                            <div class="col-sm-6 col-xs-6">
+                                <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                            </div>
+                        </div>
+                        <div class="row my-info-img">
+                            <div class="col-sm-6 col-xs-6">
+                                <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                            </div>
+                        </div>
+                        <!-- My images row -->
+                    </div>
+
+                </div>
+                <!-- My-Friends div -->
+
+                <div class="panel my-lang">
+                    <div class="panel-body">
+                        <button class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i></button>
+
+                        <a href="#">English (US)</a> ·
+                        <a href="#">Vietnamese (VI)</a>
+
+                    </div>
+                </div>
+
+                <div class="panel-copy">
+                    <p>
+
+                        <a href="#">Privacy</a> .
+                        <a href="#">Terms</a> .
+                        <a href="#">Advertising</a> .
+                        <a href="#">Ad Choices</a> .
+                        <a href="#">Cookies</a> .
+                        <a href="#">More <i class="glyphicon glyphicon-chevron-down"></i></a>
+
+                        <p><a href="#">Facecook © 2021</a></p>
+
+                    </p>
+                </div>
+
+            </div>
+            <!-- /Left Sidebar -->
+            <div class="col-md-7 col sm-7" style="height:100%">
+<div th:each="p , loop: ${posts}">
+            <div class="col-md-12 col sm-12">
+                <div class="post">
+                    <div class="media media-name">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" th:src="@{${user.getAvatar()}}" alt="avatar" style="width: 48px; height: 48px;">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <div th:if="${currentuser.username == user.username}" class="dropdown pull-right" style="position: absolute; right: 2em;">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    <span class="caret"></span>
+				  </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a th:href="@{/detail-post(id=${p.getId()})}">Detail Post</a></li>
+                                    <li><a th:href="@{/edit-post(id=${p.getId()})}">Edit Post</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a th:href="@{/delete-post/__${p.getId()}__}">Delete</a></li>
+                                </ul>
+                            </div>
+
+                            <h4 class="media-heading"><a href="#" th:text="${p.getUser().getUsername()}"></a></a>
+                            </h4>
+                            <p><i class="glyphicon glyphicon-globe"></i>   <a th:text="${displayTimes.get(loop.index)}"> 2 hours ago</a></p>
+                        </div>
+                    </div>
+                    <!-- /Media-name -->
+
+                    <div class="post-content">
+                        <p th:text="${'#'+p.getTag()}" style="font-weight: bolder"></p>
+                        <p th:text="${p.getContent()}"></p>
+                        <div style="height: 300px; width: 100%;"><a th:href="@{/detail-post(id=${p.getId()})}"><img th:src="@{${p.getImg()}}" alt="Picnic" style="height: 100%; width: 100%; object-fit: contain"></a></div>
+                        <!-- emoji-reactions -->
+
+                        <div class="well well-sm fc-react">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default"><a th:href="@{/likes-post(id=${p.getId()}, back='profile')}"><i class="posts like"></i> Like</a></button>
+                                <button type="button" class="btn btn-default"><i class="posts comment"></i> Comment</button>
+                            </div>
+                        </div>
+                        <!-- /fc-react -->
+
+                    </div>
+                    <!-- /Post Content -->
+
+<!--                    <div class="fc-engage">-->
+<!--                        <div class="well well-sm">-->
+<!--                            &lt;!&ndash; <i class="glyphicon glyphicon-thumbs-up f-tu"></i> &ndash;&gt;-->
+<!--                            <a th:text="${p.getLikes()}">455</a> likes-->
+<!--                            <a href=""></a>-->
+<!--                        </div>-->
+
+<!--                        <div class="media media-comment">-->
+<!--                            <div class="media-left">-->
+<!--                                <img style="width: 45px; height: 45px;" th:src="@{${currentuser.getAvatar()}}" alt="currentuser">-->
+<!--                            </div>-->
+<!--                            <div class="media-body">-->
+<!--                                <textarea rows="1" placeholder="Write a comment."></textarea>-->
+
+<!--                                <a href="#" class="textarea-camera"><i style="top: -1.1em;" class="glyphicon glyphicon-camera f-tu"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+                    <!-- /FC Engage -->
+                    <div class="fc-engage">
+                    <div class="card-block b-b-theme b-t-theme social-msg" style="margin-bottom: 12px;">
+                        <a href="#"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted" th:text="${p.getLikes() + ' Likes'}" style="color: darkred">Like (20)</span> </a>
+                        <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted" th:if="${p.getComments().size() > 0}" th:text="${p.getComments().size() + ' Comments'}" style="color: darkred">Comments (25)</span></a>
+                        <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted" th:unless="${p.getComments().size() > 0}" style="color: darkred">0 Comments</span></a>
+                    </div>
+                    <div class="card-block user-box">
+                        <div class="media m-b-20" th:each="c : ${p.getComments()}">
+                            <a class="media-left" th:href="@{/profile(iduser=${c.getUser().getId()})}">
+                                <img class="media-object img-radius m-r-20" th:src="@{${c.getUser().getAvatar()}}" alt="Generic placeholder image">
+                            </a>
+                            <div class="media-body b-b-muted social-client-description">
+                                <div class="chat-header" ><span th:text="${c.getUser().getUsername()}" style="font-size: 16px; font-weight: bolder">About Marta Williams</span><span class="text-muted" th:text="${'   ' +c.getCommentTime()}" style="font-size: 10px; margin-left: 10px;">Jane 10, 2015</span></div>
+                                <p class="text-muted" th:text="${c.getContent()}" style="font-weight: 500; color: #000;"></p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img class="media-object img-radius m-r-20" th:src="@{${currentuser.getAvatar()}}" alt="Generic placeholder image" >
+                            </a>
+                            <div class="media-body">
+                                <form th:action="@{/create-comment}" method='POST' th:object="${comment}">
+                                    <div>
+                                        <input type="text" name="back" th:value="profile" hidden>
+                                        <input type='hidden' name='postId' th:value='${p.getId()}'/>
+                                        <textarea rows="5" cols="5" class="form-control" placeholder="Write Something here..." th:field="*{content}"></textarea>
+                                        <div class="text-right m-t-20"><button type="submit" class="btn btn-primary waves-effect waves-light">Bình luận</button></div>
+                                        <h3 th:if="${errorCode} != null" th:text="${errorCode}" style="color: darkred"></h3>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+                <!-- Post #1 -->
+            </div>
+</div>
+            <!-- Main Posts Grid -->
+            </div>
+            <div class="col-md-1 col sm-1" style="height:100%"></div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
