@@ -112,26 +112,36 @@ public class FriendController {
 
     @GetMapping("/app/{id}")
     public ModelAndView sendInvitations(@PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/fr/friendList");
+        long id_user = iUserServices.findIdByUsername(getPrincipal());
+        if (iFriendService.check(id, id_user).isEmpty()){
+            ModelAndView modelAndView = new ModelAndView("redirect:/fr/friendList");
 
-        // doi tuong singUp
-        User user1 = iUserServices.getUser(iUserServices.findIdByUsername(getPrincipal()));
-        // doi tuong muon ket ban
-        User user2 = iUserServices.getUser(id);
+            // doi tuong user
+            User user1 = iUserServices.getUser(iUserServices.findIdByUsername(getPrincipal()));
 
-        Friend friend1 = new Friend();
-        friend1.setStatus(3);
-        friend1.setId_user(user1);
-        friend1.setId_friend(user2);
-        iFriendService.save(friend1);
+            // doi tuong muon ket ban
+            User user2 = iUserServices.getUser(id);
 
-        Friend friend2 = new Friend();
-        friend2.setStatus(0);
-        friend2.setId_user(user2);
-        friend2.setId_friend(user1);
-        iFriendService.save(friend2);
+            Friend friend1 = new Friend();
+            friend1.setStatus(3);
+            friend1.setId_user(user1);
+            friend1.setId_friend(user2);
+            iFriendService.save(friend1);
 
-        return modelAndView;
+            Friend friend2 = new Friend();
+            friend2.setStatus(0);
+            friend2.setId_user(user2);
+            friend2.setId_friend(user1);
+            iFriendService.save(friend2);
+
+            return modelAndView;
+        }
+        else {
+            ModelAndView modelAndView = new ModelAndView("redirect:/fr/friendList");
+            modelAndView.addObject("checkFriend", "hãy kiểm tra lại thông báo");
+            return modelAndView;
+        }
+
     }
 
     @GetMapping("/showMyFriend")

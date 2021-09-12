@@ -66,24 +66,16 @@ public class GroupController {
     }
 
     @PostMapping("/createGroup")
-    public ModelAndView createGroup(@ModelAttribute("create") GroupTest groupTest,@RequestParam("avatarUpFile") MultipartFile avatarUpFile, @RequestParam("backgroundUpFile") MultipartFile backgroundUpFile) {
+    public ModelAndView createGroup(@ModelAttribute("create") GroupTest groupTest, @RequestParam("avatarUpFile") MultipartFile avatarUpFile) {
         ModelAndView modelAndView = new ModelAndView("group/test");
 
+        groupTest.setBackground("non");
         String nameAvatar = avatarUpFile.getOriginalFilename();
-        String nameBackground = backgroundUpFile.getOriginalFilename();
+
         try {
             FileCopyUtils.copy(avatarUpFile.getBytes(), new File(fileUpload + "WEB-INF\\file\\" + nameAvatar));
             groupTest.setAvatar("/resource/WEB-INF/file/" + nameAvatar);
             System.out.println(nameAvatar);
-        } catch (IOException e) {
-            System.err.println("err upload file");
-        }
-
-
-        try {
-            FileCopyUtils.copy(backgroundUpFile.getBytes(), new File(fileUpload + "WEB-INF\\file\\" + nameBackground));
-            groupTest.setAvatar("/resource/WEB-INF/file/" + nameBackground);
-            System.out.println(nameBackground);
         } catch (IOException e) {
             System.err.println("err upload file");
         }
@@ -96,6 +88,13 @@ public class GroupController {
         member.setGroupTest(groupTest);
         member.setRoleGroup(iRoleGroupService.getRoleGroupById(1));
         iMemberService.save(member);
+        return modelAndView;
+    }
+
+    @RequestMapping("/homeGroup")
+    public ModelAndView showHome(){
+        ModelAndView modelAndView = new ModelAndView("group/HomeGroup");
+        modelAndView.addObject("Group");
         return modelAndView;
     }
 
