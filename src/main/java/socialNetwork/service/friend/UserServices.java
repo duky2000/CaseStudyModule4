@@ -37,4 +37,9 @@ public class UserServices implements IUserServices{
         return iUserRepo.findAllMyFriend(user);
     }
 
+    @Override
+    public ArrayList<Long> getListIdUser(long id_user) {
+        return iUserRepo.findIdTest(id_user);
+    }
+
 }

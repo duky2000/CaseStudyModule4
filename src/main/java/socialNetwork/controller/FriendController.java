@@ -14,6 +14,9 @@ import socialNetwork.model.User;
 import socialNetwork.service.friend.IFriendService;
 import socialNetwork.service.friend.IUserServices;
 
+
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping("/fr")
 public class FriendController {
@@ -25,7 +28,7 @@ public class FriendController {
     IFriendService iFriendService;
 
     @ModelAttribute("getUser")
-    public User user(){
+    public User user() {
         return iUserServices.getUser(iUserServices.findIdByUsername(getPrincipal()));
     }
 
@@ -42,14 +45,14 @@ public class FriendController {
     }
 
     @RequestMapping("/home")
-    public ModelAndView home(){
+    public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("friend/view/home");
         modelAndView.addObject("list", iFriendService.findNonFriend(iUserServices.findIdByUsername(getPrincipal())));
         return modelAndView;
     }
 
     @RequestMapping("/accept/{id}")
-    public ModelAndView accept(@PathVariable long id){
+    public ModelAndView accept(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/home");
 
         //iUserServices.findIdByUsername(getPrincipal()) = id_user(doi tuong dang dap nhap)
@@ -78,7 +81,7 @@ public class FriendController {
     }
 
     @RequestMapping("/ignore/{id}")
-    public ModelAndView ignore(@PathVariable long id){
+    public ModelAndView ignore(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/home");
 
         long id1 = iUserServices.findIdByUsername(getPrincipal());
@@ -93,22 +96,22 @@ public class FriendController {
         return modelAndView;
     }
 
-    @GetMapping("/friendList")
-    public ModelAndView showUserList(){
-        ModelAndView modelAndView = new ModelAndView("friend/view/friendList");
-        modelAndView.addObject("showUserList", iUserServices.findAllUser(getPrincipal()));
-        return modelAndView;
-    }
+//    @GetMapping("/friendList")
+//    public ModelAndView showUserList(){
+//        ModelAndView modelAndView = new ModelAndView("friend/view/friendList");
+//        modelAndView.addObject("showUserList", iUserServices.findAllUser(getPrincipal()));
+//        return modelAndView;
+//    }
 
     @GetMapping("/detail/{id}")
-    public ModelAndView showDetailUser(@PathVariable long id){
+    public ModelAndView showDetailUser(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("friend/view/detail");
         modelAndView.addObject("detail", iUserServices.getUser(id));
         return modelAndView;
     }
 
     @GetMapping("/app/{id}")
-    public ModelAndView sendInvitations(@PathVariable long id){
+    public ModelAndView sendInvitations(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/fr/friendList");
 
         // doi tuong singUp
@@ -132,10 +135,35 @@ public class FriendController {
     }
 
     @GetMapping("/showMyFriend")
-    public ModelAndView showMyFriend(){
+    public ModelAndView showMyFriend() {
         ModelAndView modelAndView = new ModelAndView("friend/view/showMyFriend");
         modelAndView.addObject("friendList", iUserServices.findAllMyFriend(iUserServices.findIdByUsername(getPrincipal())));
         return modelAndView;
     }
 
+    @GetMapping("/friendList")
+    public ModelAndView showUserList() {
+
+        ModelAndView modelAndView = new ModelAndView("friend/view/friendList");
+        modelAndView.addObject("showUserList", getAllUserNonFriend());
+        return modelAndView;
+    }
+    // hơi cồng kềnh tí nhưng chấp nhận đc :)
+    private ArrayList<User> getAllUserNonFriend() {
+        ArrayList<User> listUser = iUserServices.findAllUser(getPrincipal());
+
+        ArrayList<Long> listIdUser = iUserServices.getListIdUser(iUserServices.findIdByUsername(getPrincipal()));
+
+        for (int i = 0; i < listIdUser.size(); i++) {
+            long a = listIdUser.get(i);
+
+            for (int j = 0; j < listUser.size(); j++) {
+                if (listUser.get(j).getId() == a) {
+                    listUser.remove(j);
+                }
+            }
+        }
+        ArrayList<User> list = listUser;
+        return list;
+    }
 }
