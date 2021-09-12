@@ -148,22 +148,39 @@ public class FriendController {
         modelAndView.addObject("showUserList", getAllUserNonFriend());
         return modelAndView;
     }
+
     // hơi cồng kềnh tí nhưng chấp nhận đc :)
     private ArrayList<User> getAllUserNonFriend() {
         ArrayList<User> listUser = iUserServices.findAllUser(getPrincipal());
 
         ArrayList<Long> listIdUser = iUserServices.getListIdUser(iUserServices.findIdByUsername(getPrincipal()));
 
+
         for (int i = 0; i < listIdUser.size(); i++) {
             long a = listIdUser.get(i);
-
             for (int j = 0; j < listUser.size(); j++) {
-                if (listUser.get(j).getId() == a) {
+                System.out.println(listUser.get(j).getId());
+                if (listUser.get(j).getId() == a){
                     listUser.remove(j);
                 }
             }
         }
-        ArrayList<User> list = listUser;
-        return list;
+
+        ArrayList<Long> listIdInvite = iUserServices.findIdInviteFriend(iUserServices.findIdByUsername(getPrincipal()));
+
+        if (listIdInvite.isEmpty()){
+            return listUser;
+        } else {
+            for (int c = 0; c < listIdInvite.size(); c++) {
+                long a = listIdInvite.get(c);
+                for (int j = 0; j < listUser.size(); j++) {
+                    System.out.println(listUser.get(j).getId());
+                    if (listUser.get(j).getId() == a){
+                        listUser.remove(j);
+                    }
+                }
+            }
+            return listUser;
+        }
     }
 }

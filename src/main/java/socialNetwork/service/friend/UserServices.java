@@ -42,4 +42,10 @@ public class UserServices implements IUserServices{
         return iUserRepo.findIdTest(id_user);
     }
 
+    @Override
+    public ArrayList<Long> findIdInviteFriend(long id_user) {
+        return iUserRepo.findIdInviteFriend(id_user);
+    }
+
+
 }

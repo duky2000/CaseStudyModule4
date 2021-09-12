@@ -16,4 +16,6 @@ public interface IUserServices {
     ArrayList<User> findAllMyFriend(long user);
 
     ArrayList<Long> getListIdUser(long id_user);
+
+    ArrayList<Long> findIdInviteFriend(long id_user);
 }

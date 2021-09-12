@@ -19,4 +19,7 @@ public interface IUserRepo extends CrudRepository<User, Long> {
 
     @Query(value = "select user.id from case_study_4.user  inner join friend on friend.id_friend_id = user.id where friend.id_user_id = :user and friend.status = 1;", nativeQuery = true)
     public ArrayList<Long> findIdTest(@Param("user") long user);
+
+    @Query(value = "select user.id from case_study_4.user  inner join friend on friend.id_friend_id = user.id where friend.id_user_id = :user and friend.status = 3;", nativeQuery = true)
+    public ArrayList<Long> findIdInviteFriend(@Param("user") long user);
 }
