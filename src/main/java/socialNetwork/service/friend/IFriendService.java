@@ -18,4 +18,6 @@ public interface IFriendService {
     ArrayList<Friend> findIdMyFriend(long id_user, long id_friend);
 
     ArrayList<Friend> check(long id_user, long id_friend);
+
+    int getStatus (long id_friend, long id_user);
 }

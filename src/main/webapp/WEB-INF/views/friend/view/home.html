@@ -78,7 +78,7 @@
                            <!--header-->
 <div th:object="${getUser}">
     <div class="nav">
-        <a th:href="@{/}" class="logo" th:text="*{username}"></a>
+        <a th:href="@{/}" class="logo" th:text="'hello ' + *{username}"></a>
         <ul class="menu">
             <li><a href="/fr/home">Home</a></li>
             <li><a href="/gr/createGroup">Create group</a></li>

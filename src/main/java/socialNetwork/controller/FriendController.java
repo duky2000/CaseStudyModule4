@@ -64,7 +64,7 @@ public class FriendController {
         System.out.println(id1);
         System.out.println(id2);
 
-        // lúc làm bị rối lên làm cái dưới hơi a đuồi tí
+
 
         long a = iFriendService.findId(id1, id2);
         System.out.println(a);
@@ -159,7 +159,7 @@ public class FriendController {
         return modelAndView;
     }
 
-    // hơi cồng kềnh tí nhưng chấp nhận đc :)
+
     private ArrayList<User> getAllUserNonFriend() {
         ArrayList<User> listUser = iUserServices.findAllUser(getPrincipal());
 

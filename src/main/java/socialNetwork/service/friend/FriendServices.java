@@ -48,5 +48,10 @@ public class FriendServices implements IFriendService{
         return iFriendRepo.check(id_friend, id_user);
     }
 
+    @Override
+    public int getStatus(long id_friend, long id_user) {
+        return iFriendRepo.getStatus(id_friend, id_user);
+    }
+
 
 }

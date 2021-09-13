@@ -23,80 +23,83 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("/gr")
 public class GroupController {
-
-    @Value("${static-path}")
-    private String fileUpload;
-
-    @Autowired
-    IGroupService iGroupService;
-
-
-    @Autowired
-    IUserServices iUserServices;
-
-    @Autowired
-    IRoleGroupService iRoleGroupService;
-
-    @Autowired
-    IMemberService iMemberService;
-
-
-    //---------
-
-    private String getPrincipal() {
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-
-    //---------
-
-
-    @GetMapping("/createGroup")
-    public ModelAndView showCreateGroup() {
-        ModelAndView modelAndView = new ModelAndView("group/CreateGroupDemo");
-        modelAndView.addObject("create", new GroupTest());
-        return modelAndView;
-    }
-
-    @PostMapping("/createGroup")
-    public ModelAndView createGroup(@ModelAttribute("create") GroupTest groupTest, @RequestParam("avatarUpFile") MultipartFile avatarUpFile) {
-        ModelAndView modelAndView = new ModelAndView("group/test");
-
-        groupTest.setBackground("non");
-        String nameAvatar = avatarUpFile.getOriginalFilename();
-
-        try {
-            FileCopyUtils.copy(avatarUpFile.getBytes(), new File(fileUpload + "WEB-INF\\file\\" + nameAvatar));
-            groupTest.setAvatar("/resource/WEB-INF/file/" + nameAvatar);
-            System.out.println(nameAvatar);
-        } catch (IOException e) {
-            System.err.println("err upload file");
-        }
-
-        iGroupService.saveGroup(groupTest);
-
-
-        Member member = new Member();
-        member.setUser(iUserServices.getUser(iUserServices.findIdByUsername(getPrincipal())));
-        member.setGroupTest(groupTest);
-        member.setRoleGroup(iRoleGroupService.getRoleGroupById(1));
-        iMemberService.save(member);
-        return modelAndView;
-    }
-
-    @RequestMapping("/homeGroup")
-    public ModelAndView showHome(){
-        ModelAndView modelAndView = new ModelAndView("group/HomeGroup");
-        modelAndView.addObject("Group");
-        return modelAndView;
-    }
-
+//
+//    @Value("${static-path}")
+//    private String fileUpload;
+//
+//    @Autowired
+//    IGroupService iGroupService;
+//
+//
+//    @Autowired
+//    IUserServices iUserServices;
+//
+//    @Autowired
+//    IRoleGroupService iRoleGroupService;
+//
+//    @Autowired
+//    IMemberService iMemberService;
+//
+//    @Autowired
+//
+//
+//
+//    //---------
+//
+//    private String getPrincipal() {
+//        String userName = null;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        if (principal instanceof UserDetails) {
+//            userName = ((UserDetails) principal).getUsername();
+//        } else {
+//            userName = principal.toString();
+//        }
+//        return userName;
+//    }
+//
+//    //---------
+//
+//
+//    @GetMapping("/createGroup")
+//    public ModelAndView showCreateGroup() {
+//        ModelAndView modelAndView = new ModelAndView("group/CreateGroupDemo");
+//        modelAndView.addObject("create", new GroupTest());
+//        return modelAndView;
+//    }
+//
+//    @PostMapping("/createGroup")
+//    public ModelAndView createGroup(@ModelAttribute("create") GroupTest groupTest, @RequestParam("avatarUpFile") MultipartFile avatarUpFile) {
+//        ModelAndView modelAndView = new ModelAndView("group/test");
+//
+//        groupTest.setBackground("non");
+//        String nameAvatar = avatarUpFile.getOriginalFilename();
+//
+//        try {
+//            FileCopyUtils.copy(avatarUpFile.getBytes(), new File(fileUpload + "WEB-INF\\file\\" + nameAvatar));
+//            groupTest.setAvatar("/resource/WEB-INF/file/" + nameAvatar);
+//            System.out.println(nameAvatar);
+//        } catch (IOException e) {
+//            System.err.println("err upload file");
+//        }
+//
+//        iGroupService.saveGroup(groupTest);
+//
+//
+//        Member member = new Member();
+//        member.setUser(iUserServices.getUser(iUserServices.findIdByUsername(getPrincipal())));
+//        member.setGroupTest(groupTest);
+//        member.setRoleGroup(iRoleGroupService.getRoleGroupById(1));
+//        iMemberService.save(member);
+//        return modelAndView;
+//    }
+//
+//    @RequestMapping("/homeGroup")
+//    public ModelAndView showHome(){
+//        ModelAndView modelAndView = new ModelAndView("group/test");
+//        modelAndView.addObject("Group");
+//        return modelAndView;
+//    }
+//
 
 }
