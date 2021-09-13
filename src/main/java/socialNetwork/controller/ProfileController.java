@@ -10,6 +10,8 @@ import socialNetwork.model.Comment;
 import socialNetwork.model.Post;
 import socialNetwork.service.ILikesService;
 import socialNetwork.service.IPostService;
+import socialNetwork.service.friend.IFriendService;
+import socialNetwork.service.friend.IUserServices;
 import socialNetwork.service.user.IUserService;
 
 
@@ -29,6 +31,10 @@ public class ProfileController {
 //    public String showLoginForm() {
 //        return "login";
 //    }
+    @Autowired
+    IUserServices iUserServices;
+    @Autowired
+    IFriendService iFriendService;
     @GetMapping("/profile")
     public ModelAndView getProfile(@RequestParam("iduser") Long iduser, @ModelAttribute("errorCode") String errorCode ) {
         ModelAndView modelAndView = new ModelAndView("post/fbprofile");
@@ -61,7 +67,17 @@ public class ProfileController {
             else displayTimes.add(result4 + " days ago");
 
         };
-
+        modelAndView.addObject("friendList", iUserServices.findAllMyFriend(iduser));
+//        int friendstatus = Math.toIntExact(iFriendService.getFriendStatus(userService.getPrincipal().getId(), iduser));
+//        String statusFriend;
+//        if (friendstatus == 1) {
+//            statusFriend = "friend";
+//        } else if (friendstatus == 3) {
+//            statusFriend = "answer";
+//        } else if (friendstatus == 0) {
+//            statusFriend = "request";
+//        } else statusFriend = "other";
+//        modelAndView.addObject("statusFriend", statusFriend);
         modelAndView.addObject("displayTimes", displayTimes);
         return modelAndView;
     }

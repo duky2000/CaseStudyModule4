@@ -53,5 +53,10 @@ public class FriendServices implements IFriendService{
         return iFriendRepo.getAllFriendPost(userid);
     }
 
+    @Override
+    public Long getFriendStatus(Long uid, Long fid) {
+        return iFriendRepo.getFriendStatus(uid, fid);
+    }
+
 
 }

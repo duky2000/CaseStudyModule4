@@ -99,12 +99,16 @@
 
         </div>
 
-        <div th:if="${user.getUsername() != currentuser.getUsername()}" class="f-buttons">
-            <button class="btn btn-primary btn-f-a"><a href="">
-                <i class="glyphicon glyphicon-plus"></i> Thêm bạn</a></button>
-            <button class="btn btn-primary btn-f-o"><i class="glyphicon glyphicon-share-alt"></i> Đang chờ phản hồi
-            </button>
-        </div>
+<!--        <div th:if="${user.getUsername() != currentuser.getUsername()}" class="f-buttons" style="color: #fff">-->
+<!--            <button th:if="${statusFriend.equals('other')}" class="btn btn-primary btn-f-a"><a th:href="@{/fr/app/{id}(id = ${user.id})}" >-->
+<!--                <i class="glyphicon glyphicon-plus"></i> Thêm bạn</a></button>-->
+<!--            <button th:if="${statusFriend.equals('request')}" class="btn btn-primary btn-f-o"><i class="glyphicon glyphicon-share-alt"></i> Đang chờ phản hồi-->
+<!--            </button>-->
+<!--            <button th:if="${statusFriend.equals('answer')}" class="btn btn-primary btn-f-o"><a th:href="@{/fr/accept/{id}(id = ${user.id})}"><i class="glyphicon glyphicon-pencil"></i> Đồng ý kết bạn</a>-->
+<!--            </button>-->
+<!--            <button th:if="${statusFriend.equals('friend')}" class="btn btn-primary"><a href="" >-->
+<!--                <i class="glyphicon glyphicon-ok"></i> Bạn bè</a></button>-->
+<!--        </div>-->
     </div>
     <!-- Jumbotron Container -->
 </div>
@@ -184,32 +188,15 @@
 
             <div class="panel my-friends">
                 <div class="panel-heading">
-                    <h4><i class="glyphicon glyphicon-user"></i> Friends <span class="label label-primary">32k</span> <i
+                    <h4><i class="glyphicon glyphicon-user"></i> Bạn bè <span class="label label-primary" th:if="${friendList.size() > 0}"
+                                                                              th:text="${friendList.size()}">32k</span><span class="label label-primary" th:unless="${friendList.size() > 0}"
+                                                                                                                             >0</span> <i
                             class="glyphicon glyphicon-chevron-down pull-right"></i></h4>
                 </div>
-                <div class="panel-body" style="padding-right: 0">
+                <div th:if="${friendList.size() > 0}" class="panel-body" style="padding-right: 0">
                     <div class="row my-info-img">
-                        <div class="col-sm-6 col-xs-6">
-                            <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
-                        </div>
-                        <div class="col-sm-6 col-xs-6">
-                            <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
-                        </div>
-                    </div>
-                    <div class="row my-info-img">
-                        <div class="col-sm-6 col-xs-6">
-                            <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
-                        </div>
-                        <div class="col-sm-6 col-xs-6">
-                            <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
-                        </div>
-                    </div>
-                    <div class="row my-info-img">
-                        <div class="col-sm-6 col-xs-6">
-                            <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
-                        </div>
-                        <div class="col-sm-6 col-xs-6">
-                            <a href=""><img src="http://lorempixel.com/480/480" alt="Person 1 Name"></a>
+                        <div class="col-sm-6 col-xs-6" th:each="f : ${friendList}">
+                            <a th:href="@{/profile(iduser=${f.getId()})}"><img th:src="@{${f.avatar}}" alt="Person 1 Name"></a>
                         </div>
                     </div>
                     <!-- My images row -->

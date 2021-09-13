@@ -441,7 +441,7 @@ nav {
   border-bottom: 1px solid #eee;
   padding: 6px 9px;
   margin-bottom: 0px;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .notifications-item:hover {
@@ -468,6 +468,10 @@ nav {
   font-size: 12px
 }
 
+.notifications-item a {
+  text-decoration: none;
+}
+
 #deletenotify {
   position: absolute;
   right: 5px;
@@ -478,32 +482,32 @@ nav {
   text-decoration: none;
 }
 
-.menu_down{
-  background: black;
-  width: 180px;
-  height: 10em;
-  margin: 0px auto;
-  line-height: 3em;
-  position: absolute;
-  /*here */
-  top: 40px;
-  right: 17px;
-  display: none;
-  text-decoration: none;
-  list-style-type: none;
-  color: white;
-  font-family: Arial;
-}
+/*.menu_down{*/
+/*  background: black;*/
+/*  width: 180px;*/
+/*  height: 10em;*/
+/*  margin: 0px auto;*/
+/*  line-height: 3em;*/
+/*  position: absolute;*/
+/*  !*here *!*/
+/*  top: 40px;*/
+/*  right: 17px;*/
+/*  display: none;*/
+/*  text-decoration: none;*/
+/*  list-style-type: none;*/
+/*  color: white;*/
+/*  font-family: Arial;*/
+/*}*/
 
-.menu_down li {
-  text-align: center;
+/*.menu_down li {*/
+/*  text-align: center;*/
 
-}
+/*}*/
 
-.menu_down li a:hover {
-  color: #e32879;
-}
+/*.menu_down li a:hover {*/
+/*  color: #e32879;*/
+/*}*/
 
-.menu_link:hover .menu_down{
-  display: block;
-}
+/*.menu_link:hover .menu_down{*/
+/*  display: block;*/
+/*}*/

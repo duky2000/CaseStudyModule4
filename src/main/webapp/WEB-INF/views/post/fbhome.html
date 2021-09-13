@@ -52,19 +52,29 @@
           /></a>
           <h4 th:text="${user.getFullname()}">Dũng Nguyễn</h4>
         </div>
-        <div class="menu_link">
-        <a href="#"><span class="material-icons"> people </span></a>
-        <ul class="menu_down">
-          <li th:each="c, loop: ${list}">
-            <a th:text="${c.id_user.fullname}"></a><a th:href="@{/fr/accept/{id}(id = ${c.id_user.id})}"> yes</a><a th:href="@{/fr/ignore/{id}(id = ${c.id_user.id})}"> cancel</a>
-          </li>
-        </ul>
-        </div>
-        <a th:href="@{/message(idsend=${lastestSender})}"><span class="material-icons"> forum </span></a>
-        <span class="material-icons" id="bell"> notifications_active </span>
-<!--        thông báo-->
+        <span class="material-icons" id="bell2"> people </span>
         <nav>
-<!--          <div class="icona" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>-->
+          <div class="notifications" id="box2">
+            <h2 th:if="${list.size() > 0}">Lời mời kết bạn - <span th:text="${list.size()}">2</span></h2>
+            <h2 th:unless="${list.size() > 0}">Lời mời kết bạn - <span>0</span></h2>
+            <div class="notifications-item" th:each="c : ${list}">
+              <a th:href="@{/profile(iduser=${c.id_user.getId()})}" th:text="${c.id_user.fullname}"></a>
+              <a th:href="@{/fr/accept/{id}(id = ${c.id_user.id})}"> Yes</a>
+              <a th:href="@{/fr/ignore/{id}(id = ${c.id_user.id})}"> Cancel</a>
+            </div>
+          </div>
+        </nav>
+
+<!--        <ul class="menu_down">-->
+<!--          <li th:each="c, loop: ${list}">-->
+<!--            <a th:text="${c.id_user.fullname}"></a><a th:href="@{/fr/accept/{id}(id = ${c.id_user.id})}"> yes</a><a th:href="@{/fr/ignore/{id}(id = ${c.id_user.id})}"> cancel</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+
+        <a th:href="@{/message(idsend=${lastestSender})}"><span class="material-icons"> forum </span></a>
+<!--        thông báo-->
+        <span class="material-icons" id="bell"> notifications_active </span>
+        <nav>
           <div class="notifications" id="box">
             <h2 th:if="${notifications.size() > 0}">Thông báo - <span th:text="${notifications.size()}">2</span></h2>
             <h2 th:unless="${notifications.size() > 0}">Thông báo - <span>0</span></h2>
@@ -73,15 +83,15 @@
               <div id="deletenotify"><a th:href="@{/delete-notify(idnotify=${n.getId()})}"><span aria-hidden="true">×</span></a></div>
               <div class="text">
                 <a th:href="@{/detail-post(id=${n.getPost().getId()})}">
-                <h4 th:text="${n.getSender().getFullname()}">Samso aliao</h4>
-                <p th:text="${' đã '+n.getContent() +' bài đăng của bạn'}">Samso Nagaro Like your home work</p>
+                <h4 th:text="${n.getSender().getFullname()}"></h4>
+                <p th:text="${' đã '+n.getContent() +' bài đăng của bạn'}"></p>
                 </a>
               </div>
             </div>
           </div>
         </nav>
 <!--        thông báo-->
-        <a href="/logout"><span class="material-icons"> expand_more </span></a>
+        <a href="/logout"><span class="material-icons"> logout </span></a>
       </div>
     </div>
     <!-- header ends -->
