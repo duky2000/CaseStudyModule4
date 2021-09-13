@@ -99,12 +99,17 @@
 
         </div>
 
-        <div th:if="${user.getUsername() != currentuser.getUsername()}" class="f-buttons">
-            <button class="btn btn-primary btn-f-a"><a href="">
-                <i class="glyphicon glyphicon-plus"></i> Thêm bạn</a></button>
-            <button class="btn btn-primary btn-f-o"><i class="glyphicon glyphicon-share-alt"></i> Đang chờ phản hồi
+        <div th:if="${check == 1}" class="f-buttons">
+            <button class="btn btn-primary btn-f-o"><i class="glyphicon glyphicon-share-alt"></i> Đã là bạn bè
             </button>
         </div>
+<!--        <div th:unless="${check == 1}">-->
+<!--            <button class="btn btn-primary btn-f-a">-->
+<!--                <a th:href="">-->
+<!--                    <i class="glyphicon glyphicon-plus"></i> Thêm bạn-->
+<!--                </a>-->
+<!--            </button>-->
+<!--        </div>-->
     </div>
     <!-- Jumbotron Container -->
 </div>
@@ -280,7 +285,7 @@
                         <!-- /Media-name -->
 
                         <div class="post-content">
-<!--                            <p th:text="${'#'+p.getTag()}" style="font-weight: bolder"></p>-->
+                            <!--                            <p th:text="${'#'+p.getTag()}" style="font-weight: bolder"></p>-->
                             <p th:text="${p.getContent()}"></p>
                             <div style="height: 300px; width: 100%;"><a th:href="@{/detail-post(id=${p.getId()})}"><img
                                     th:src="@{${p.getImg()}}" alt="Picnic"

@@ -1,100 +1,100 @@
-socialNetwork/repository/IMessageRepository.java
- socialNetwork.repository.IMessageRepository
+socialNetwork/controller/UserController.java
+ socialNetwork.controller.UserController
 socialNetwork/config/AppConfig.java
  socialNetwork.config.AppConfig
-socialNetwork/config/AppInit.java
- socialNetwork.config.AppInit
+socialNetwork/repository/IPostRepository.java
+ socialNetwork.repository.IPostRepository
 socialNetwork/repository/RoleRepository.java
  socialNetwork.repository.RoleRepository
-socialNetwork/service/user/IRoleService.java
- socialNetwork.service.user.IRoleService
-socialNetwork/service/IGeneralService.java
- socialNetwork.service.IGeneralService
-socialNetwork/config/SecurityInit.java
- socialNetwork.config.SecurityInit
-socialNetwork/service/ICommentService.java
- socialNetwork.service.ICommentService
+socialNetwork/model/friend/Friend.java
+ socialNetwork.model.friend.Friend
+socialNetwork/service/CommentService.java
+ socialNetwork.service.CommentService
+socialNetwork/model/Comment.java
+ socialNetwork.model.Comment
+socialNetwork/repository/ILikesRepository.java
+ socialNetwork.repository.ILikesRepository
 socialNetwork/model/Role.java
  socialNetwork.model.Role
 socialNetwork/service/IMessageService.java
  socialNetwork.service.IMessageService
-socialNetwork/service/user/RoleService.java
- socialNetwork.service.user.RoleService
+socialNetwork/service/NotificationService.java
+ socialNetwork.service.NotificationService
 socialNetwork/model/friend/FriendTest.java
  socialNetwork.model.friend.FriendTest
-socialNetwork/controller/UserController.java
- socialNetwork.controller.UserController
+socialNetwork/model/User.java
+ socialNetwork.model.User
+socialNetwork/config/SecurityInit.java
+ socialNetwork.config.SecurityInit
+socialNetwork/controller/CommentController.java
+ socialNetwork.controller.CommentController
+socialNetwork/service/IGeneralService.java
+ socialNetwork.service.IGeneralService
+socialNetwork/service/friend/IUserServices.java
+ socialNetwork.service.friend.IUserServices
+socialNetwork/controller/NotificationController.java
+ socialNetwork.controller.NotificationController
+socialNetwork/repository/IMessageRepository.java
+ socialNetwork.repository.IMessageRepository
+socialNetwork/controller/MessageController.java
+ socialNetwork.controller.MessageController
+socialNetwork/controller/LikesController.java
+ socialNetwork.controller.LikesController
+socialNetwork/config/AppInit.java
+ socialNetwork.config.AppInit
+socialNetwork/service/friend/UserServices.java
+ socialNetwork.service.friend.UserServices
+socialNetwork/service/PostService.java
+ socialNetwork.service.PostService
+socialNetwork/repository/UserRepository.java
+ socialNetwork.repository.UserRepository
+socialNetwork/service/ICommentService.java
+ socialNetwork.service.ICommentService
 socialNetwork/config/SecurityConfig.java
  socialNetwork.config.SecurityConfig
 socialNetwork/service/ILikesService.java
  socialNetwork.service.ILikesService
-socialNetwork/controller/FriendController.java
- socialNetwork.controller.FriendController
-socialNetwork/repository/IPostRepository.java
- socialNetwork.repository.IPostRepository
 socialNetwork/model/Message.java
  socialNetwork.model.Message
-socialNetwork/controller/ProfileController.java
- socialNetwork.controller.ProfileController
-socialNetwork/service/friend/FriendServices.java
- socialNetwork.service.friend.FriendServices
+socialNetwork/model/Notification.java
+ socialNetwork.model.Notification
 socialNetwork/service/IPostService.java
  socialNetwork.service.IPostService
-socialNetwork/controller/HomeController.java
- socialNetwork.controller.HomeController
-socialNetwork/repository/ILikesRepository.java
- socialNetwork.repository.ILikesRepository
 socialNetwork/service/LikesService.java
  socialNetwork.service.LikesService
+socialNetwork/repository/friend/IUserRepo.java
+ socialNetwork.repository.friend.IUserRepo
+socialNetwork/service/user/RoleService.java
+ socialNetwork.service.user.RoleService
 socialNetwork/controller/PostController.java
  socialNetwork.controller.PostController
 socialNetwork/service/MessageService.java
  socialNetwork.service.MessageService
-socialNetwork/service/NotificationService.java
- socialNetwork.service.NotificationService
-socialNetwork/model/User.java
- socialNetwork.model.User
 socialNetwork/service/user/IUserService.java
  socialNetwork.service.user.IUserService
-socialNetwork/controller/CommentController.java
- socialNetwork.controller.CommentController
-socialNetwork/service/friend/IUserServices.java
- socialNetwork.service.friend.IUserServices
 socialNetwork/service/INotificationService.java
  socialNetwork.service.INotificationService
 socialNetwork/repository/ICommentRepository.java
  socialNetwork.repository.ICommentRepository
-socialNetwork/controller/NotificationController.java
- socialNetwork.controller.NotificationController
 socialNetwork/repository/INotificationRepository.java
  socialNetwork.repository.INotificationRepository
-socialNetwork/controller/MessageController.java
- socialNetwork.controller.MessageController
 socialNetwork/model/Likes.java
  socialNetwork.model.Likes
-socialNetwork/repository/friend/IFriendRepo.java
- socialNetwork.repository.friend.IFriendRepo
-socialNetwork/model/Post.java
- socialNetwork.model.Post
-socialNetwork/controller/LikesController.java
- socialNetwork.controller.LikesController
-socialNetwork/model/Comment.java
- socialNetwork.model.Comment
-socialNetwork/service/CommentService.java
- socialNetwork.service.CommentService
-socialNetwork/service/friend/IFriendService.java
- socialNetwork.service.friend.IFriendService
-socialNetwork/model/friend/Friend.java
- socialNetwork.model.friend.Friend
 socialNetwork/service/user/UserService.java
  socialNetwork.service.user.UserService
-socialNetwork/repository/UserRepository.java
- socialNetwork.repository.UserRepository
-socialNetwork/service/PostService.java
- socialNetwork.service.PostService
-socialNetwork/model/Notification.java
- socialNetwork.model.Notification
-socialNetwork/repository/friend/IUserRepo.java
- socialNetwork.repository.friend.IUserRepo
-socialNetwork/service/friend/UserServices.java
- socialNetwork.service.friend.UserServices
+socialNetwork/model/Post.java
+ socialNetwork.model.Post
+socialNetwork/service/user/IRoleService.java
+ socialNetwork.service.user.IRoleService
+socialNetwork/service/friend/IFriendService.java
+ socialNetwork.service.friend.IFriendService
+socialNetwork/controller/FriendController.java
+ socialNetwork.controller.FriendController
+socialNetwork/repository/friend/IFriendRepo.java
+ socialNetwork.repository.friend.IFriendRepo
+socialNetwork/controller/HomeController.java
+ socialNetwork.controller.HomeController
+socialNetwork/service/friend/FriendServices.java
+ socialNetwork.service.friend.FriendServices
+socialNetwork/controller/ProfileController.java
+ socialNetwork.controller.ProfileController

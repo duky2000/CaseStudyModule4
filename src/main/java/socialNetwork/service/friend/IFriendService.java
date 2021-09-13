@@ -21,4 +21,6 @@ public interface IFriendService {
     ArrayList<Friend> check(long id_user, long id_friend);
 
     public ArrayList<Long> getAllFriendPost(@Param("userid") Long userid);
+
+    int getStatus(long id_user, long id_friend);
 }

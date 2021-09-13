@@ -1,6 +1,8 @@
 package socialNetwork.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +12,8 @@ import socialNetwork.model.Comment;
 import socialNetwork.model.Post;
 import socialNetwork.service.ILikesService;
 import socialNetwork.service.IPostService;
+import socialNetwork.service.friend.IFriendService;
+import socialNetwork.service.friend.IUserServices;
 import socialNetwork.service.user.IUserService;
 
 
@@ -25,12 +29,29 @@ public class ProfileController {
     IPostService postService;
     @Autowired
     ILikesService likesService;
-//    @GetMapping("/login")
+    @Autowired
+    IFriendService iFriendService;
+    @Autowired
+    IUserServices iUserServices;
+
+    //    @GetMapping("/login")
 //    public String showLoginForm() {
 //        return "login";
 //    }
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
+
     @GetMapping("/profile")
-    public ModelAndView getProfile(@RequestParam("iduser") Long iduser, @ModelAttribute("errorCode") String errorCode ) {
+    public ModelAndView getProfile(@RequestParam("iduser") Long iduser, @ModelAttribute("errorCode") String errorCode) {
         ModelAndView modelAndView = new ModelAndView("post/fbprofile");
 //        ArrayList<Post> posts = (ArrayList<Post>) postService.findByUserOrderByPostTimeDesc(userService.getPrincipal());
         ArrayList<Post> posts = (ArrayList<Post>) postService.findByUserOrderByPostTimeDesc(userService.findById(iduser).get());
@@ -42,6 +63,7 @@ public class ProfileController {
         modelAndView.addObject("user", userService.findById(iduser).get());
         modelAndView.addObject("posts", posts);
         modelAndView.addObject("currentuser", userService.getPrincipal());
+        modelAndView.addObject("check", 1);
         modelAndView.addObject("post", new Post());
         modelAndView.addObject("comment", new Comment());
         if (errorCode == null) ;
@@ -51,16 +73,17 @@ public class ProfileController {
         long milliseconds2 = date.getTime();
         for (Post p : posts) {
             long milliseconds1 = p.getPostTime().getTime();
-            int result1 = (int) ((milliseconds2 - milliseconds1)/1000);
-            int result2 = (int) (result1/60);
-            int result3 = (int) (result2/60);
-            int result4 = (int) (result3/24);
+            int result1 = (int) ((milliseconds2 - milliseconds1) / 1000);
+            int result2 = (int) (result1 / 60);
+            int result3 = (int) (result2 / 60);
+            int result4 = (int) (result3 / 24);
             if (result1 < 60) displayTimes.add(result1 + " seconds ago");
             else if (result2 < 60) displayTimes.add(result2 + " minutes ago");
             else if (result3 < 24) displayTimes.add(result3 + " hours ago");
             else displayTimes.add(result4 + " days ago");
 
-        };
+        }
+        ;
 
         modelAndView.addObject("displayTimes", displayTimes);
         return modelAndView;
