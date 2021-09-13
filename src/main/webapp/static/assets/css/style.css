@@ -70,7 +70,7 @@ a {
 
 .jumbotron {
     height: 520px;
-    background: linear-gradient(rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0.5)), url('../images/timeline.jpg') fixed !important;
+    background: linear-gradient(rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0.5)), url('https://img.thuthuatphanmem.vn/uploads/2018/10/26/hinh-nen-thien-nhien-dep-kich-thuoc-full-hd_091930733.jpg') fixed !important;
     background-position: center;
     background-attachment: fixed;
     border-bottom: 2px solid #333;

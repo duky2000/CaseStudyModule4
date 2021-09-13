@@ -59,7 +59,7 @@
                     <a href="#">
                         <img th:src="@{${currentuser.getAvatar()}}" alt="Full Name" class="nav-dp"
                              style="width: 32px; height: 32px;">
-                        <span th:text="${currentuser.getUsername()}"></span>
+                        <span th:text="${currentuser.getFullname()}"></span>
                     </a>
                 </li>
                 <li class="nav-icons"><a href="#"><i class="glyphicon glyphicon-user"></i> <span>Friends</span></a></li>
@@ -93,7 +93,7 @@
             <img th:src="@{${user.getAvatar()}}" alt="Full Name" class="thumbnail dp-img"
                  style="width: 160px; height: 160px;">
 
-            <a href="#" class="dp-profile-name" th:text="${user.getUsername()}"> <i
+            <a href="#" class="dp-profile-name" th:text="${user.getFullname()}"> <i
                     class="glyphicon glyphicon-ok-sign"></i></a>
 
 
@@ -271,7 +271,7 @@
                                     </ul>
                                 </div>
 
-                                <h4 class="media-heading"><a href="#" th:text="${p.getUser().getUsername()}"></a></a>
+                                <h4 class="media-heading"><a href="#" th:text="${p.getUser().getFullname()}"></a></a>
                                 </h4>
                                 <p><i class="glyphicon glyphicon-globe"></i> <a
                                         th:text="${displayTimes.get(loop.index)}"> 2 hours ago</a></p>
@@ -280,7 +280,7 @@
                         <!-- /Media-name -->
 
                         <div class="post-content">
-                            <p th:text="${'#'+p.getTag()}" style="font-weight: bolder"></p>
+<!--                            <p th:text="${'#'+p.getTag()}" style="font-weight: bolder"></p>-->
                             <p th:text="${p.getContent()}"></p>
                             <div style="height: 300px; width: 100%;"><a th:href="@{/detail-post(id=${p.getId()})}"><img
                                     th:src="@{${p.getImg()}}" alt="Picnic"
@@ -342,7 +342,7 @@
                                              th:src="@{${c.getUser().getAvatar()}}" alt="Generic placeholder image">
                                     </a>
                                     <div class="media-body b-b-muted social-client-description">
-                                        <div class="chat-header"><span th:text="${c.getUser().getUsername()}"
+                                        <div class="chat-header"><span th:text="${c.getUser().getFullname()}"
                                                                        style="font-size: 16px; font-weight: bolder">About Marta Williams</span><span
                                                 class="text-muted" th:text="${'   ' +c.getCommentTime()}"
                                                 style="font-size: 10px; margin-left: 10px;">Jane 10, 2015</span></div>

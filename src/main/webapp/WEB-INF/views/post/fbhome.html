@@ -50,13 +50,13 @@
             style="width: 45px; height: 45px;"
             alt=""
           /></a>
-          <h4 th:text="${user.getUsername()}">Dũng Nguyễn</h4>
+          <h4 th:text="${user.getFullname()}">Dũng Nguyễn</h4>
         </div>
         <div class="menu_link">
         <a href="#"><span class="material-icons"> people </span></a>
         <ul class="menu_down">
           <li th:each="c, loop: ${list}">
-            <a th:text="${c.id_user.username}"></a><a th:href="@{/fr/accept/{id}(id = ${c.id_user.id})}"> yes</a><a th:href="@{/fr/ignore/{id}(id = ${c.id_user.id})}"> cancel</a>
+            <a th:text="${c.id_user.fullname}"></a><a th:href="@{/fr/accept/{id}(id = ${c.id_user.id})}"> yes</a><a th:href="@{/fr/ignore/{id}(id = ${c.id_user.id})}"> cancel</a>
           </li>
         </ul>
         </div>
@@ -73,7 +73,7 @@
               <div id="deletenotify"><a th:href="@{/delete-notify(idnotify=${n.getId()})}"><span aria-hidden="true">×</span></a></div>
               <div class="text">
                 <a th:href="@{/detail-post(id=${n.getPost().getId()})}">
-                <h4 th:text="${n.getSender().getUsername()}">Samso aliao</h4>
+                <h4 th:text="${n.getSender().getFullname()}">Samso aliao</h4>
                 <p th:text="${' đã '+n.getContent() +' bài đăng của bạn'}">Samso Nagaro Like your home work</p>
                 </a>
               </div>
@@ -97,7 +97,7 @@
                   style="width: 45px; height: 45px;"
                   alt=""
           /></a>
-          <h4 th:text="${user.getUsername()}">Dũng Nguyễn</h4>
+          <h4 th:text="${user.getFullname()}">Dũng Nguyễn</h4>
         </div>
 
         <div class="sidebarRow">
@@ -295,7 +295,7 @@
               alt="" style="width: 45px; height: 45px;"
             /></a>
             <div class="post__topInfo">
-              <h3 th:text="${p.getUser().getUsername()}">Dũng Nguyễn</h3>
+              <h3 th:text="${p.getUser().getFullname()}">Dũng Nguyễn</h3>
               <p th:text="${displayTimes.get(loop.index)}">25 April at 20:30</p>
             </div>
           </div>

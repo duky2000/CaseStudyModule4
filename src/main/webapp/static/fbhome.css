@@ -2,7 +2,8 @@
     margin: 0;
     box-sizing: border-box;
   }
-  
+
+
   .header__left img {
     height: 40px;
   }
@@ -484,9 +485,14 @@ nav {
   margin: 0px auto;
   line-height: 3em;
   position: absolute;
-  top: 60px;
+  /*here */
+  top: 40px;
   right: 17px;
   display: none;
+  text-decoration: none;
+  list-style-type: none;
+  color: white;
+  font-family: Arial;
 }
 
 .menu_down li {

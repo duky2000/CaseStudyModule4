@@ -31,7 +31,7 @@
                                 <a th:href="@{/profile(iduser=${post.getUser().getId()})}"><img class="img-circle"
                                                                                                 th:src="@{${post.user.getAvatar()}}"/></a>
                                 <strong><a th:href="@{/profile(iduser=${post.getUser().getId()})}"
-                                           th:text="${post.user.username}">John Doe</a></strong>
+                                           th:text="${post.user.fullname}">John Doe</a></strong>
                                 <span th:text="${result}">12 minutes ago</span>
                             </div>
                             <div class="clearfix" style="margin: 10px 0;">
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="comment-text">
                                         <strong><a th:href="@{/profile(iduser=${c.user.getId()})}"
-                                                   th:text="${c.user.username}">Jane Doe</a></strong>
+                                                   th:text="${c.user.fullname}">Jane Doe</a></strong>
                                         <p th:text="${c.content}">Hello this is a test comment.</p> <span
                                             class="date sub-text"
                                             th:text="${c.getCommentTime()}">on December 5th, 2016</span>

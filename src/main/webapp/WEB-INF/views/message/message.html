@@ -41,12 +41,12 @@
                             <div class="chat_ib">
                                 <a th:href="@{/message(idsend=${s.getReceiver().getId()})}"><h5
                                         th:if="${s.getSender().getId()} == ${currentid}"
-                                        th:text="${s.getReceiver().getUsername()}"><span class="chat_date"
+                                        th:text="${s.getReceiver().getFullname()}"><span class="chat_date"
                                                                                          th:text="${s.getMessageTime()}"></span>
                                 </h5></a>
                                 <a th:href="@{/message(idsend=${s.getSender().getId()})}"><h5
                                         th:if="${s.getSender().getId()} != ${currentid}"
-                                        th:text="${s.getSender().getUsername()}"><span class="chat_date"
+                                        th:text="${s.getSender().getFullname()}"><span class="chat_date"
                                                                                        th:text="${s.getMessageTime()}"></span>
                                 </h5></a>
                                 <p th:text="${s.getContent()}"></p>
