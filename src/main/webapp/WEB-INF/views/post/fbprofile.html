@@ -147,13 +147,13 @@
                 </div>
                 <div class="panel-body">
                     <p class="text-center">
-                        Hello everyone. This is <a href="http://fb.com">Dũng CT</a> and I am the co-founder of DSK Web.
-                        <br><br> You can check me out at <a href="http://fb.com">www.about.me/dungdz98</a>.
+                        Hí anh em. Tôi tên là <a href="http://fb.com" th:text="${user.getFullname()}">Dũng CT</a> và tôi là developer của DSK Web.
+                        <br><br> Bạn có thể liên lạc với tôi tại <a href="http://fb.com">www.about.me/dungdz98</a>.
                     </p>
                     <hr>
-                    <p><i class="glyphicon glyphicon-user"></i> Founder at <a href="#">Facecook</a></p>
-                    <p><i class="glyphicon glyphicon-map-marker"></i> Lives at <a href="#">Hà Nội, Việt Nam</a></p>
-                    <p><i class="glyphicon glyphicon-book"></i> Goes to <a href="#">Đại học Công nghiệp Hà Nội</a></p>
+                    <p><i class="glyphicon glyphicon-user"></i> Chủ tịch tập đoàn xuyên quốc gia <a href="#">Facebook</a></p>
+                    <p><i class="glyphicon glyphicon-map-marker"></i> Quê quán: <a href="#" th:text="${user.getAddress()}">Hà Nội, Việt Nam</a></p>
+                    <p><i class="glyphicon glyphicon-phone"></i> Số điện thoại: <a href="#" th:text="${user.getPhone()}">Đại học Công nghiệp Hà Nội</a></p>
                     <p><i class="glyphicon glyphicon-star"></i> Followed to <a href="#">1M+</a> subscribes.</p>
                     <!-- Ofcourse not -->
                     <p><i class="glyphicon glyphicon-cutlery"></i> Eat <a href="#">anything</a> you give from heart.</p>
