@@ -84,7 +84,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resource/**")
-                .addResourceLocations("file:E:\\CodeGym\\Module 4\\CaseStudy\\case-study-module4\\CaseStudyModule4\\src\\main\\webapp\\");
+                .addResourceLocations("file:D:\\Module4\\TestCaseMD4\\src\\main\\webapp\\");
     }
 
     @Bean
@@ -100,7 +100,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/case_study_4");
         dataSource.setUsername("root");
-        dataSource.setPassword("dung1998");
+        dataSource.setPassword("0988568002");
         return dataSource;
     }
 
