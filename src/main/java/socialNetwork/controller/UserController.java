@@ -12,27 +12,27 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import socialNetwork.model.User;
 import socialNetwork.model.Role;
-import socialNetwork.service.user.RoleService;
+
+import socialNetwork.service.user.IRoleService;
 import socialNetwork.service.user.UserService;
-import socialNetwork.validate.ValidateUserName;
+
 
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 public class UserController {
-    @Value("${img-path}")
-    private String fileUpload;
     @Autowired
     UserService userService;
 
     @Autowired
-    RoleService roleService;
+    IRoleService roleService;
 
-    @Autowired
-    ValidateUserName validateUserName;
 
+    @Value("${img-path}")
+    private String fileUpload;
 
 
     @GetMapping("/login")
@@ -55,11 +55,24 @@ public class UserController {
         return modelAndView;
     }
 
+    @PostMapping("/forgotPassword")
+    public ModelAndView findPassWord(@RequestParam String username) {
+
+        ModelAndView modelAndView = new ModelAndView("user/forgotPassword");
+        if (userService.findByName(username) != null) {
+            modelAndView.addObject("result", userService.findByName(username).getPassword());
+        } else {
+            modelAndView.addObject("result", "This account does not exist");
+        }
+
+        return modelAndView;
+    }
+
 
 //    @GetMapping("/")
 //    public ModelAndView showFormUser() {
 //        ModelAndView modelAndView = new ModelAndView("user/home");
-//        Long idUser = userService.findByName(getUsernamePrincipal()).getId();
+//        Long idUser = userService.findByName(getPrincipal()).getId();
 //        modelAndView.addObject("idUserName", idUser);
 //        return modelAndView;
 //    }
@@ -98,57 +111,77 @@ public class UserController {
 
 
         ModelAndView modelAndView;
-        validateUserName.validate(user,bindingResult);
-        if (!user.getPassword().equals(user.getRepass())) {
+
+        if (userService.existsByUsername(user.getUsername())) {
+
+            modelAndView = new ModelAndView("user/signup");
+            modelAndView.addObject("message", "sam user name");
+
+        } else if (userService.existsByPhone(user.getPhone())) {
+
+            modelAndView = new ModelAndView("user/signup");
+            modelAndView.addObject("message", "sam phone number ");
+
+        } else if (userService.existsByEmail(user.getEmail())) {
+
+            modelAndView = new ModelAndView("user/signup");
+            modelAndView.addObject("message", "sam email");
+
+        } else if (!user.getPassword().equals(user.getRepass())) {
 
             modelAndView = new ModelAndView("user/signup");
             modelAndView.addObject("message", "confirm password does not match");
 
-        } else if (bindingResult.hasFieldErrors()){
+        } else if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("user/signup");
-            modelAndView.addObject("username", "Duplicate name");
 
-        }
-        else {
+        } else {
             long id = 2;
             user.setRole(roleService.findById(id));
 
             userService.save(user);
-            modelAndView = new ModelAndView("redirect:/");
+            modelAndView = new ModelAndView("redirect:/login");
         }
         return modelAndView;
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@RequestParam("upImg") MultipartFile upImg, @ModelAttribute User user) {
+    public ModelAndView edit(@RequestParam("upImg") MultipartFile upImg, @ModelAttribute User user,@PathVariable long id) {
         String nameImg = upImg.getOriginalFilename();
         try {
-            FileCopyUtils.copy(upImg.getBytes(), new File(fileUpload +"static\\uploaded\\"+ nameImg));
-            user.setAvatar("/resource/static/uploaded/"+nameImg);
+            FileCopyUtils.copy(upImg.getBytes(), new File(fileUpload + "file\\" + nameImg));
+            user.setAvatar("/resource/file/" + nameImg);
         } catch (IOException e) {
             System.err.println("err upload file");
         }
-
-        userService.save(user);
-        return "redirect:/";
+        Optional<User> user1 = userService.findById(id);
+        if (user1.isPresent()){
+            if (user.getRole() == null){
+                user.setRole(user1.get().getRole());
+            }
+        }
+            userService.save(user);
+        ModelAndView modelAndView = new ModelAndView("user/edit");
+        modelAndView.addObject("appUser", user);
+        return modelAndView;
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable long id) {
         userService.delete(userService.findById(id).get());
-        return "redirect:/";
+        return "redirect:/login";
     }
 
-    private String getUsernamePrincipal() {
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
+//    private String getPrincipal() {
+//        String userName = null;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        if (principal instanceof UserDetails) {
+//            userName = ((UserDetails) principal).getUsername();
+//        } else {
+//            userName = principal.toString();
+//        }
+//        return userName;
+//    }
 
 }

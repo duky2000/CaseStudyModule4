@@ -18,10 +18,14 @@ public interface IUserService {
 
     void delete(User appUser);
 
-    User findByUsername(String username);
+    Boolean existsByUsername(String username);
+
+    Boolean existsByPhone (String phone);
+
+    Boolean existsByEmail (String email);
 
 
 
     List<User> findAllByUsernameContaining(String name);
-    User getPrincipal();
+    public User getPrincipal();
 }
